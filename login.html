@@ -15,7 +15,7 @@
         <div class="box">
           <!-- 왼쪽 로고 -->
           <div class="left-side">
-            <img class="logo-img" src="logo.png" alt="Logo" />
+            <img class="logo-img" src="./images/system_logo.png" alt="Logo" />
             <h1 class="title">Litium Loop</h1>
           </div>
           <!-- 오른쪽 로그인 폼 -->
@@ -28,7 +28,8 @@
               <button type="submit">Login</button>
             </form>
             <div class="register-link">
-              Don't you have an account? <a href="register.html">Register</a> Now!
+              Don't you have an account?
+              <a href="register.html">Register</a> Now!
             </div>
           </div>
         </div>
@@ -52,6 +53,10 @@
 
           if (user) {
             alert(`Welcome, ${user.name}!`);
+
+            // 현재 로그인한 사용자 정보를 로컬스토리지에 저장
+            localStorage.setItem("current_login", JSON.stringify(user));
+
             // Role에 따라 리다이렉트
             if (user.role === "customer") {
               window.location.href = "user_dashboard.html";
@@ -89,6 +94,75 @@
             },
           ];
           localStorage.setItem("accounts", JSON.stringify(dummyAccounts));
+        }
+
+        if (!localStorage.getItem("batteries")) {
+          const dummyBatteries = [
+            {
+              Type: "Lithium AAA",
+              Amount: 12,
+              Cost_per: 12,
+              Total_Cost: 144,
+            },
+            {
+              Type: "Lithium AA",
+              Amount: 20,
+              Cost_per: 10,
+              Total_Cost: 200,
+            },
+          ];
+          localStorage.setItem("batteries", JSON.stringify(dummyBatteries));
+        }
+
+        if (!localStorage.getItem("selling_requests")) {
+          const dummyRequests = [
+            {
+              type: "Lithium AAA",
+              date: "12/18/2024",
+              address: "200, Mapo-daero, Mapo-gu, Seoul",
+              amount: 12,
+              costs: 32,
+              accept: false,
+            },
+            {
+              type: "Lithium AA",
+              date: "12/19/2024",
+              address: "150, Gangnam-daero, Gangnam-gu, Seoul",
+              amount: 20,
+              costs: 50,
+              accept: true,
+            },
+          ];
+          localStorage.setItem(
+            "selling_requests",
+            JSON.stringify(dummyRequests)
+          );
+        }
+
+        // 로컬스토리지 초기화
+        if (!localStorage.getItem("purchasing_requests")) {
+          const purchasingRequests = [
+            {
+              type: "Lithium AAA",
+              company: "Samsung",
+              date: "12/18, 2024",
+              amount: 12,
+              costs: 32,
+              accept: false,
+            },
+            {
+              type: "Lithium AA",
+              company: "LG Chem",
+              date: "12/19, 2024",
+              amount: 20,
+              costs: 50,
+              accept: true,
+            },
+          ];
+          localStorage.setItem(
+            "purchasing_requests",
+            JSON.stringify(purchasingRequests)
+          );
         }
       };
     </script>
