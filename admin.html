@@ -42,21 +42,11 @@
               <tr>
                 <th>Type</th>
                 <th>Amount</th>
-                <th>Cost</th>
+                <th>Cost per one</th>
+                <th>Costs</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Lithium AAA</td>
-                <td>12</td>
-                <td>32$</td>
-              </tr>
-              <tr>
-                <td>Lithium AAA</td>
-                <td>12</td>
-                <td>32$</td>
-              </tr>
-            </tbody>
+            <tbody id="battery-data"></tbody>
           </table>
         </section>
 
@@ -75,26 +65,7 @@
                 <th>Apply</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>⏳ Waiting</td>
-                <td>Lithium AAA</td>
-                <td>12/18, 2024</td>
-                <td>200, Mapo-daero, Mapo-gu, Seoul</td>
-                <td>12</td>
-                <td>32$</td>
-                <td><button class="action-button">수락</button></td>
-              </tr>
-              <tr>
-                <td>✅ Success</td>
-                <td>Lithium AAA</td>
-                <td>12/18, 2024</td>
-                <td>200, Mapo-daero, Mapo-gu, Seoul</td>
-                <td>12</td>
-                <td>32$</td>
-                <td><button class="disabled-button">수락완료</button></td>
-              </tr>
-            </tbody>
+            <tbody id="selling-requests-data"></tbody>
           </table>
         </section>
 
@@ -113,29 +84,184 @@
                 <th>Apply</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>⏳ Waiting</td>
-                <td>Lithium AAA</td>
-                <td>Samsung SDI</td>
-                <td>12/18, 2024</td>
-                <td>12</td>
-                <td>32$</td>
-                <td><button class="action-button">수락</button></td>
-              </tr>
-              <tr>
-                <td>✅ Complete</td>
-                <td>Lithium AAA</td>
-                <td>TSMC</td>
-                <td>12/18, 2024</td>
-                <td>12</td>
-                <td>32$</td>
-                <td><button class="disabled-button">수락완료</button></td>
-              </tr>
-            </tbody>
+            <tbody id="purchasing-requests-data"></tbody>
           </table>
         </section>
       </main>
     </div>
   </body>
+  <script>
+    // 로컬스토리지에서 데이터 가져오기
+    function getBatteriesFromLocalStorage() {
+      const batteries = localStorage.getItem("batteries");
+      return batteries ? JSON.parse(batteries) : [];
+    }
+
+    // 로컬스토리지에서 데이터 가져오기
+    function getSellingRequestsFromLocalStorage() {
+      const requests = localStorage.getItem("selling_requests");
+      return requests ? JSON.parse(requests) : [];
+    }
+
+    // 로컬스토리지에서 데이터 가져오기
+    function getPurchasingRequestsFromLocalStorage() {
+      const requests = localStorage.getItem("purchasing_requests");
+      return requests ? JSON.parse(requests) : [];
+    }
+
+    // 데이터를 렌더링하는 함수
+    function renderBatteries(data) {
+      const tbody = document.getElementById("battery-data");
+      tbody.innerHTML = ""; // 기존 내용을 비우기
+
+      data.forEach((battery) => {
+        const row = document.createElement("tr");
+
+        // 각 데이터 값을 셀에 추가
+        for (const key in battery) {
+          const cell = document.createElement("td");
+          if (key === "Total_Cost" || key === "Cost_per") {
+            cell.textContent = `${battery[key]}$`;
+          } else {
+            cell.textContent = battery[key];
+          }
+          row.appendChild(cell);
+        }
+
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderSellingRequests(data) {
+      const tbody = document.getElementById("selling-requests-data");
+      tbody.innerHTML = ""; // 기존 내용을 비우기
+
+      data.forEach((request) => {
+        const row = document.createElement("tr");
+
+        // Status 컬럼 추가
+        const statusCell = document.createElement("td");
+        statusCell.textContent = request.accept ? `✅ Complete` : `⏳ Waiting`;
+        row.appendChild(statusCell);
+
+        // 다른 필드 추가
+        for (const key in request) {
+          if (key === "accept") continue; // accept는 버튼으로 처리
+
+          const cell = document.createElement("td");
+
+          if (key === "costs") {
+            // Cost 필드에 단위 추가
+            cell.textContent = `${request[key]}$`;
+          } else {
+            cell.textContent = request[key];
+          }
+
+          row.appendChild(cell);
+        }
+
+        // Accept 버튼 추가
+        const actionCell = document.createElement("td");
+        const button = document.createElement("button");
+        button.textContent = request.accept ? "수락완료" : "수락";
+        button.className = request.accept ? "disabled-button" : "action-button";
+        button.disabled = request.accept;
+
+        // 버튼 클릭 이벤트
+        button.addEventListener("click", () => handleAccept(request));
+
+        actionCell.appendChild(button);
+        row.appendChild(actionCell);
+
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderPurchasingRequests(data) {
+      const tbody = document.getElementById("purchasing-requests-data");
+      tbody.innerHTML = ""; // 기존 내용을 비우기
+    
+      data.forEach((request) => {
+        const row = document.createElement("tr");
+    
+        // Accept 상태에 따라 Status 추가
+        const statusCell = document.createElement("td");
+        statusCell.textContent = request.accept ? "✅ Complete" : "⏳ Waiting";
+        row.appendChild(statusCell);
+    
+        // 나머지 데이터 필드 추가
+        for (const key in request) {
+          if (key === "accept") continue; // accept는 Status로 처리
+    
+          const cell = document.createElement("td");
+          if (key === "costs") {
+            // Cost 필드에 단위 추가
+            cell.textContent = `${request[key]}$`;
+          } else {
+            cell.textContent = request[key];
+          }
+          row.appendChild(cell);
+        }
+    
+        // Accept 버튼 추가
+        const actionCell = document.createElement("td");
+        const button = document.createElement("button");
+        button.textContent = request.accept ? "수락완료" : "수락";
+        button.className = request.accept ? "disabled-button" : "action-button";
+        button.disabled = request.accept;
+    
+        // 버튼 클릭 이벤트
+        button.addEventListener("click", () => handlePurchaseAccept(request));
+    
+        actionCell.appendChild(button);
+        row.appendChild(actionCell);
+    
+        tbody.appendChild(row);
+      });
+    }
+    
+    
+
+    function handleAccept(request) {
+      // 요청 상태 변경
+      request.accept = true;
+
+      // 로컬스토리지 업데이트
+      const requests = getSellingRequestsFromLocalStorage();
+      const updatedRequests = requests.map((r) =>
+        r.date === request.date && r.type === request.type ? request : r
+      );
+      localStorage.setItem("selling_requests", JSON.stringify(updatedRequests));
+
+      // 테이블 다시 렌더링
+      renderSellingRequests(updatedRequests);
+    }
+
+    function handlePurchaseAccept(request) {
+      // 요청 상태 변경
+      request.accept = true;
+    
+      // 로컬스토리지 업데이트
+      const requests = getPurchasingRequestsFromLocalStorage();
+      const updatedRequests = requests.map((r) =>
+        r.date === request.date && r.type === request.type ? request : r
+      );
+      localStorage.setItem("purchasing_requests", JSON.stringify(updatedRequests));
+    
+      // 테이블 다시 렌더링
+      renderPurchasingRequests(updatedRequests);
+    }
+    
+    // 초기화 시 실행
+    document.addEventListener("DOMContentLoaded", () => {
+      const batteries = getBatteriesFromLocalStorage();
+      renderBatteries(batteries);
+
+      const requests = getSellingRequestsFromLocalStorage();
+      renderSellingRequests(requests);
+
+      const purchasingRequests = getPurchasingRequestsFromLocalStorage();
+      renderPurchasingRequests(purchasingRequests);
+    });
+  </script>
 </html>
