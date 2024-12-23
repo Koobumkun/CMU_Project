@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="company_buy.css" />
   </head>
   <body>
-    <div class="centered">
-      <img src="./images/bettery.png" />
-      <h1>Recycle Battery</h1>
-    </div>
     <div class="container">
       <!-- Sidebar -->
       <div class="sidebar">
@@ -23,29 +19,44 @@
               class="logo-icon"
             />
             <h2>Lithium Loop</h2>
+          </a>
         </div>
-
         <!-- Menu Section -->
         <nav class="menu-section">
           <img
             src="./images/sungyillhightech.png"
             alt="Company Logo"
-            class="company-logo"
+            class="admin-logo"
           />
-          <span>SungEel HiTech</span>
+          <span id="user-name">SungEel HiTech</span>
+          <div class="logout-section" id="logout-section">
+            <img id="logout-btn" src="./images/logout.png" alt="logout" />
+            <p>Logout</p>
+          </div>
+
           <ul>
-            <li>
+            <div class="menu-item">
               <a href="./company_dashboard.html">
-              <img src="./images/dashboard.png" style="width: 25px; height: 25px"/>
-              Dashboard
+                <img
+                  src="./images/dashboard.png"
+                  alt="management_icon"
+                  class="management-logo"
+                />
+                <li>Dashboard</li>
               </a>
-            </li>
-            <li>
+            </div>
+          </ul>
+          <ul>
+            <div class="menu-item selected">
               <a href="./company_buy.html">
-                <img src="./images/dollar.png" />
-                Buy
+                <img
+                  src="./images/buy.png"
+                  alt="management_icon"
+                  class="management-logo"
+                />
+                <li>Buy</li>
               </a>
-            </li>
+            </div>
           </ul>
         </nav>
       </div>

@@ -80,4 +80,45 @@ function renderProducts(products) {
   });
 }
 
+// 현재 로그인된 사용자 정보 렌더링
+function renderUserName() {
+  const currentUser = JSON.parse(localStorage.getItem("current_login"));
+
+  if (currentUser && currentUser.name) {
+    document.getElementById("user-name").textContent = currentUser.name;
+  } else {
+    document.getElementById("user-name").textContent = "Guest";
+  }
+}
+
+document.querySelectorAll(".menu-item").forEach((item) => {
+  item.addEventListener("click", () => {
+    // 모든 메뉴 항목에서 `selected` 클래스 제거
+    document.querySelectorAll(".menu-item").forEach((menu) => {
+      menu.classList.remove("selected");
+    });
+
+    // 클릭된 항목에 `selected` 클래스 추가
+    item.classList.add("selected");
+  });
+});
+
+
+    // 초기화 시 실행
+    document.addEventListener("DOMContentLoaded", () => {
+
+      renderUserName(); // 유저 이름 렌더링
+
+      // 로그아웃 이벤트 처리
+      document
+        .getElementById("logout-section")
+        .addEventListener("click", () => {
+          // 로컬스토리지에서 current_login 삭제
+          localStorage.removeItem("current_login");
+
+          // 로그인 페이지로 리다이렉트
+          window.location.href = "./login.html";
+        });
+    });
+
 renderProducts(storedProducts);
