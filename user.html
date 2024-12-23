@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User</title>
+  <title>Recycle Battery Dashboard</title>
   <link rel="stylesheet" href="user.css">
 </head>
 <body>
@@ -34,4 +34,29 @@
         <p>Location: Country, City, or ZIP Code</p>
       </div>
       <img src="https://via.placeholder.com/100" alt="User Avatar" class="user-avatar">
-      <div class="user-
+      <div class="user-stats">
+        <p>Credit: 30,000</p>
+        <p>Carbon Contribute: 0.00059%</p>
+      </div>
+    </div>
+
+    <!-- Battery Selling Form -->
+    <div class="sell-form">
+      <label for="battery-type">Type of Battery</label>
+      <select id="battery-type">
+        <option>Lithium AAA</option>
+        <option>Alkaline AA</option>
+        <option>Nickel-Cadmium</option>
+      </select>
+      
+      <label for="sell-count">Sell Count</label>
+      <input type="number" id="sell-count" placeholder="0">
+      
+      <label for="sell-price">Sell Price</label>
+      <input type="text" id="sell-price" placeholder="Enter Price">
+      
+      <button class="delivery-button">Delivery</button>
+    </div>
+  </div>
+</body>
+</html>
