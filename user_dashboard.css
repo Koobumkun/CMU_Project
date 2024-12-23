@@ -118,3 +118,7 @@ body {
     border-radius: 100%; /* 원형으로 만들기 */
     object-fit: cover; /* 이미지 비율 유지 */
   }
+
+  a {
+    text-decoration: none;
+  }
