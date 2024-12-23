@@ -65,6 +65,24 @@ a {
   margin-bottom: 10px;
 }
 
+.logout-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+#logout-btn {
+  width: 30px;
+  height: 30px;
+}
+
+.logout-section p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .menu-section span {
   display: block;
   font-size: 20px;

@@ -25,6 +25,11 @@
         <nav class="menu-section">
           <img src="./images/admin.jpg" alt="Company Logo" class="admin-logo" />
           <span id="user-name">Admin</span>
+          <div class="logout-section" id="logout-section">
+            <img id="logout-btn" src="./images/logout.png" alt="logout" />
+            <p>Logout</p>
+          </div>
+
           <ul>
             <div class="menu-item selected">
               <img
@@ -296,6 +301,17 @@
 
       const purchasingRequests = getPurchasingRequestsFromLocalStorage();
       renderPurchasingRequests(purchasingRequests);
+
+      // 로그아웃 이벤트 처리
+      document
+        .getElementById("logout-section")
+        .addEventListener("click", () => {
+          // 로컬스토리지에서 current_login 삭제
+          localStorage.removeItem("current_login");
+
+          // 로그인 페이지로 리다이렉트
+          window.location.href = "./login.html";
+        });
     });
   </script>
 </html>
