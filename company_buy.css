@@ -150,3 +150,19 @@ table {
   border-radius: 5px;
   cursor: pointer;
 }
+
+input[name="quantity"] {
+  width: 35px;
+}
+
+.quantity-group {
+  display: inline-block;
+  gap: 10px;
+  text-align: left;
+}
+
+.button-group {
+  display: inline-block;
+  gap: 10px;
+  text-align: right;
+}

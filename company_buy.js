@@ -5,21 +5,21 @@ const products = [
     name: "AA Lithium Battery",
     price: 800,
     quantity: 10,
-    image: "battery.jpg",
+    image: "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/AA.jpg",
   },
   {
     id: 2,
     name: "AAA Lithium Battery",
     price: 700,
     quantity: 30,
-    image: "battery.jpg",
+    image: "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/AAA.jpg",
   },
   {
     id: 3,
     name: "C Lithium Battery",
     price: 1200,
     quantity: 120,
-    image: "battery.jpg",
+    image: "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/C.jpg",
   },
 ];
 
@@ -40,10 +40,14 @@ function renderProducts(products) {
               <img src="${product.image}" alt="${product.name}">
               <h3>${product.name}</h3>
               <p>₩${product.price}</p>
-              <p>수량: ${product.quantity}</p>
+              <p>재고: ${product.quantity}</p>
+              <div class="quantity-group">
             <label for="quantity-${product.id}">수량:</label>
             <input type="number" id="quantity-${product.id}" name="quantity" min="1" value="1">
+            </div>
+            <div class="button-group">
               <button id="buy-${product.id}">구매</button>
+            </div>
           `;
 
     productList.appendChild(productDiv);
