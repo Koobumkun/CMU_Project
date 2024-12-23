@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="outer-container">
+      <div class="progress-bar">
+        <div class="progress-step"></div>
+      </div>
+      <div class="inner-container">
+        <div class="box">
+          <!-- 왼쪽 로고 -->
+          <div class="left-side">
+            <img class="logo-img" src="logo.png" alt="Logo" />
+            <h1 class="title">Litium Loop</h1>
+          </div>
+          <!-- 오른쪽 로그인 폼 -->
+          <div class="right-side">
+            <form id="login-form">
+              <label for="id">ID</label>
+              <input type="text" id="id" name="id" required />
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" required />
+              <button type="submit">Login</button>
+            </form>
+            <div class="register-link">
+              Don't you have an account? <a href="register.html">Register</a> Now!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // 로그인 폼 제출 이벤트
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const id = document.getElementById("id").value;
+          const password = document.getElementById("password").value;
+
+          // 로컬스토리지에서 계정 정보 가져오기
+          const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+          const user = accounts.find(
+            (account) => account.id === id && account.password === password
+          );
+
+          if (user) {
+            alert(`Welcome, ${user.name}!`);
+            // Role에 따라 리다이렉트
+            if (user.role === "customer") {
+              window.location.href = "user_dashboard.html";
+            } else if (user.role === "company") {
+              window.location.href = "company_dashboard.html";
+            } else if (user.role === "admin") {
+              window.location.href = "admin.html";
+            }
+          } else {
+            alert("Invalid ID or Password. Please try again.");
+          }
+        });
+
+      // 로컬스토리지 초기화 (더미 데이터 추가)
+      window.onload = () => {
+        if (!localStorage.getItem("accounts")) {
+          const dummyAccounts = [
+            {
+              id: "admin",
+              password: "1234",
+              name: "Admin",
+              role: "admin",
+            },
+            {
+              id: "customer1",
+              password: "1234",
+              name: "Customer User",
+              role: "customer",
+            },
+            {
+              id: "company1",
+              password: "1234",
+              name: "Company User",
+              role: "company",
+            },
+          ];
+          localStorage.setItem("accounts", JSON.stringify(dummyAccounts));
+        }
+      };
+    </script>
+  </body>
+</html>
