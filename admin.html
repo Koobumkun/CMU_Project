@@ -1,136 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recycle Battery Management</title>
-  <link rel="stylesheet" href="admin.css">
-</head>
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Logo Section -->
-      <div class="logo-section">
-        <img src="./images/bettery.png" alt="Battery Icon" class="logo-icon" style="width: 25px; height: 50px">
-        <h2>Recycle Battery</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recycle Battery Management</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <img
+            src="./images/bettery.png"
+            alt="Battery Icon"
+            class="logo-icon"
+            style="width: 25px; height: 50px"
+          />
+          <h2>Recycle Battery</h2>
+        </div>
+        <!-- Menu Section -->
+        <nav class="menu-section">
+          <img src="./images/admin.jpg" alt="Company Logo" class="admin-logo" />
+          <span>Admin</span>
+          <ul>
+            <li>Management</li>
+          </ul>
+        </nav>
       </div>
 
-      <!-- Menu Section -->
-      <nav class="menu-section">
-        <img src="">
-        <ul>
-          <li>Management</li>
-        </ul>
-      </nav>
+      <!-- Main Content -->
+      <main class="main-content">
+        <h1>Management</h1>
+
+        <!-- Our Batteries -->
+        <section class="section">
+          <h2>Our Batteries</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lithium AAA</td>
+                <td>12</td>
+                <td>32$</td>
+              </tr>
+              <tr>
+                <td>Lithium AAA</td>
+                <td>12</td>
+                <td>32$</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Selling Requests -->
+        <section class="section">
+          <h2>Selling Requests</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Address</th>
+                <th>Amount</th>
+                <th>Cost</th>
+                <th>Apply</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>⏳ Waiting</td>
+                <td>Lithium AAA</td>
+                <td>12/18, 2024</td>
+                <td>200, Mapo-daero, Mapo-gu, Seoul</td>
+                <td>12</td>
+                <td>32$</td>
+                <td><button class="action-button">수락</button></td>
+              </tr>
+              <tr>
+                <td>✅ Success</td>
+                <td>Lithium AAA</td>
+                <td>12/18, 2024</td>
+                <td>200, Mapo-daero, Mapo-gu, Seoul</td>
+                <td>12</td>
+                <td>32$</td>
+                <td><button class="disabled-button">수락완료</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Purchasing Requests -->
+        <section class="section">
+          <h2>Purchasing Requests</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Company</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Cost</th>
+                <th>Apply</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>⏳ Waiting</td>
+                <td>Lithium AAA</td>
+                <td>Samsung SDI</td>
+                <td>12/18, 2024</td>
+                <td>12</td>
+                <td>32$</td>
+                <td><button class="action-button">수락</button></td>
+              </tr>
+              <tr>
+                <td>✅ Complete</td>
+                <td>Lithium AAA</td>
+                <td>TSMC</td>
+                <td>12/18, 2024</td>
+                <td>12</td>
+                <td>32$</td>
+                <td><button class="disabled-button">수락완료</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
     </div>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <h1>Management</h1>
-
-      <!-- Our Batteries -->
-      <section class="section">
-        <h2>Our Batteries</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lithium AAA</td>
-              <td>12</td>
-              <td>32$</td>
-            </tr>
-            <tr>
-              <td>Lithium AAA</td>
-              <td>12</td>
-              <td>32$</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Selling Requests -->
-      <section class="section">
-        <h2>Selling Requests</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Status</th>
-              <th>Type</th>
-              <th>Date</th>
-              <th>Address</th>
-              <th>Amount</th>
-              <th>Cost</th>
-              <th>Apply</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>⏳ Waiting</td>
-              <td>Lithium AAA</td>
-              <td>12/18, 2024</td>
-              <td>200, Mapo-daero, Mapo-gu, Seoul</td>
-              <td>12</td>
-              <td>32$</td>
-              <td><button class="action-button">수락</button></td>
-            </tr>
-            <tr>
-              <td>✅ Success</td>
-              <td>Lithium AAA</td>
-              <td>12/18, 2024</td>
-              <td>200, Mapo-daero, Mapo-gu, Seoul</td>
-              <td>12</td>
-              <td>32$</td>
-              <td><button class="disabled-button">수락완료</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Purchasing Requests -->
-      <section class="section">
-        <h2>Purchasing Requests</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Status</th>
-              <th>Type</th>
-              <th>Company</th>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Cost</th>
-              <th>Apply</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>⏳ Waiting</td>
-              <td>Lithium AAA</td>
-              <td>Samsung SDI</td>
-              <td>12/18, 2024</td>
-              <td>12</td>
-              <td>32$</td>
-              <td><button class="action-button">수락</button></td>
-            </tr>
-            <tr>
-              <td>✅ Complete</td>
-              <td>Lithium AAA</td>
-              <td>TSMC</td>
-              <td>12/18, 2024</td>
-              <td>12</td>
-              <td>32$</td>
-              <td><button class="disabled-button">수락완료</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
-  </div>
-</body>
+  </body>
 </html>

@@ -22,8 +22,9 @@ body {
 .logo-section {
   display: flex;
   align-items: center;
+  align-content: center;
   margin: 20px;
-  font-size: 60px
+  font-size: 60px;
 }
 
 .logo-icon {
@@ -38,17 +39,32 @@ body {
 }
 
 /* Menu Section */
-.menu-section{
+.menu-section {
   height: 790px;
   margin: 20px;
-  padding: 10px;
+  margin-top: 0px;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  border-radius: 10px;
 }
+
+.menu-section .admin-logo {
+  width: 210px;
+  height: 210px;
+  border-radius: 10px;
+}
+
+.menu-section span {
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .menu-section ul {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 
 .menu-section li {
@@ -88,7 +104,8 @@ table {
   border-collapse: collapse;
 }
 
-table th, table td {
+table th,
+table td {
   text-align: left;
   padding: 10px;
   border-bottom: 1px solid #ddd;
