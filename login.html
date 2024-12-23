@@ -139,6 +139,34 @@
           );
         }
 
+        // 로컬스토리지 초기화 (더미 데이터 추가)
+        if (!localStorage.getItem("sell_history")) {
+          const dummySellHistory = [
+            {
+              status: "⏳ Waiting",
+              type: "Lithium AAA",
+              date: "12/01/2024",
+              cost: "1200$",
+            },
+            {
+              status: "✅ Complete",
+              type: "Alkaline AA",
+              date: "11/25/2024",
+              cost: "800$",
+            },
+            {
+              status: "⏳ Waiting",
+              type: "Nickel-Cadmium",
+              date: "11/20/2024",
+              cost: "300$",
+            },
+          ];
+          localStorage.setItem(
+            "sell_history",
+            JSON.stringify(dummySellHistory)
+          );
+        }
+
         // 로컬스토리지 초기화
         if (!localStorage.getItem("purchasing_requests")) {
           const purchasingRequests = [

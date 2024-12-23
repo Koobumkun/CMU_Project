@@ -94,7 +94,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="amount">amount?</label>
+              <label for="amount">Amount</label>
               <input type="number" id="amount" placeholder="Enter amount" />
             </div>
             <div class="form-group">
@@ -114,7 +114,7 @@
         const amount = parseInt(this.value, 10) || 0; // 입력된 수량
         const type = document.getElementById("battery-type").value; // 배터리 타입 선택값
         let pricePerUnit = 0;
-
+    
         // 배터리 타입별 단가 설정
         if (type === "Lithium AAA") {
           pricePerUnit = 100;
@@ -123,107 +123,116 @@
         } else {
           pricePerUnit = 60;
         }
-
+    
         // 총 가격 계산 및 표시
         const totalPrice = amount * pricePerUnit;
         document.getElementById("price").textContent = `${totalPrice}$`;
       });
-
-      const sellHistory = [];
-
+    
+      // 로컬스토리지에서 판매 기록 가져오기
+      function getSellHistoryFromLocalStorage() {
+        const history = localStorage.getItem("sell_history");
+        return history ? JSON.parse(history) : [];
+      }
+    
+      // 로컬스토리지에 판매 기록 저장
+      function saveSellHistoryToLocalStorage(history) {
+        localStorage.setItem("sell_history", JSON.stringify(history));
+      }
+    
       // 폼 요소 가져오기
-      const form = document.getElementById("selling-form");
+      const form = document.querySelector("#selling-form form");
       const historyBody = document.getElementById("sell-list");
-
+    
       // 폼 제출 이벤트
       form.addEventListener("submit", function (e) {
         e.preventDefault(); // 폼 기본 동작 방지
-
+    
         // 입력 값 가져오기
         const type = document.getElementById("battery-type").value;
-        const amount = parseInt(document.getElementById("amount").value, 10);
-        const price = parseInt(
-          document.getElementById("price").textContent,
-          10
-        );
-
+        const amount = parseInt(document.getElementById("amount").value, 10) || 0;
+        const price = parseInt(document.getElementById("price").textContent, 10) || 0;
+    
+        if (amount <= 0 || price <= 0) {
+          alert("Please enter a valid amount.");
+          return;
+        }
+    
         // 현재 날짜 생성
         const date = new Date().toLocaleDateString();
-
-        // 새로운 항목 추가
+    
+        // 새로운 항목 생성
         const newItem = {
           status: "⏳ Waiting",
           type,
-          amount,
           date,
           cost: `${price}$`,
         };
-
-        // 배열에 추가
+    
+        // 기존 기록 가져오기
+        const sellHistory = getSellHistoryFromLocalStorage();
+    
+        // 기록에 새 항목 추가
         sellHistory.push(newItem);
-
+    
+        // 로컬스토리지에 저장
+        saveSellHistoryToLocalStorage(sellHistory);
+    
         // 테이블 업데이트
         updateTable();
       });
-
+    
       // 테이블 업데이트 함수
       function updateTable() {
         // 테이블 초기화
         historyBody.innerHTML = "";
-
-        // 배열의 항목을 테이블에 추가
+    
+        // 로컬스토리지에서 기록 가져오기
+        const sellHistory = getSellHistoryFromLocalStorage();
+    
+        // 기록 렌더링
         sellHistory.forEach((item) => {
           const row = document.createElement("tr");
-
+    
           row.innerHTML = `
-          <td>${item.status}</td>
-          <td>${item.type}</td>
-          <td>${item.amount}</td>
-          <td>${item.date}</td>
-          <td>${item.cost}</td>
-        `;
-
+            <td>${item.status}</td>
+            <td>${item.type}</td>
+            <td>${item.date}</td>
+            <td>${item.cost}</td>
+          `;
+    
           historyBody.appendChild(row);
         });
       }
-
-      // 현재 로그인된 사용자 정보 렌더링
-      function renderUserName() {
-        const currentUser = JSON.parse(localStorage.getItem("current_login"));
-
-        if (currentUser && currentUser.name) {
-          document.getElementById("user-name").textContent = currentUser.name;
-        } else {
-          document.getElementById("user-name").textContent = "Guest";
-        }
-      }
-      document.querySelectorAll(".menu-item").forEach((item) => {
-        item.addEventListener("click", () => {
-          // 모든 메뉴 항목에서 `selected` 클래스 제거
-          document.querySelectorAll(".menu-item").forEach((menu) => {
-            menu.classList.remove("selected");
-          });
-
-          // 클릭된 항목에 `selected` 클래스 추가
-          item.classList.add("selected");
-        });
-      });
-
+    
       // 초기화 시 실행
       document.addEventListener("DOMContentLoaded", () => {
         renderUserName(); // 유저 이름 렌더링
-
+        updateTable(); // 테이블 업데이트
+    
         // 로그아웃 이벤트 처리
         document
           .getElementById("logout-section")
           .addEventListener("click", () => {
             // 로컬스토리지에서 current_login 삭제
             localStorage.removeItem("current_login");
-
+    
             // 로그인 페이지로 리다이렉트
             window.location.href = "./login.html";
           });
       });
+    
+      // 현재 로그인된 사용자 정보 렌더링
+      function renderUserName() {
+        const currentUser = JSON.parse(localStorage.getItem("current_login"));
+    
+        if (currentUser && currentUser.name) {
+          document.getElementById("user-name").textContent = currentUser.name;
+        } else {
+          document.getElementById("user-name").textContent = "Guest";
+        }
+      }
     </script>
+    
   </body>
 </html>
