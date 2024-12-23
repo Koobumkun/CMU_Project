@@ -13,14 +13,25 @@ body {
   /* Sidebar Styles */
   .sidebar {
     width: 250px;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 796px;
     padding: 20px;
   }
   
   .sidebar-header {
     text-align: center;
+    height: 660px;
     margin-bottom: 20px;
+    background-color: #fff;
+    padding-top: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 12px;
   }
   
   .user-avatar {
@@ -29,6 +40,10 @@ body {
     border-radius: 50%;
   }
   
+  .sidebar-nav{
+    padding-left: 12px;
+    text-align: left;
+  }
   .sidebar-nav ul {
     list-style: none;
     padding: 0;
@@ -50,7 +65,7 @@ body {
   }
   
   /* Sell History Styles */
-  .sell-history {
+  #sell-history {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -58,43 +73,43 @@ body {
     margin-bottom: 20px;
   }
   
-  .sell-history table {
+  #sell-history table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
   }
   
-  .sell-history th, .sell-history td {
+  #sell-history th, .sell-history td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
   }
   
   /* Selling Form Styles */
-  .selling-form {
+  #selling-form {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
   
-  .selling-form .form-group {
+  #selling-form .form-group {
     margin-bottom: 20px;
   }
   
-  .selling-form label {
+  #selling-form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
   }
   
-  .selling-form input, .selling-form select {
+  #selling-form input, .selling-form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
   
-  .selling-form .submit-button {
+  #selling-form .submit-button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -105,3 +120,6 @@ body {
     font-size: 16px;
   }
   
+  a{
+    text-decoration: none;
+  }
