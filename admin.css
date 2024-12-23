@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f7f9fc;
+  background-color: #eff3fb;
 }
 
 .container {
@@ -13,33 +13,48 @@ body {
 /* Sidebar Styles */
 .sidebar {
   width: 250px;
+  height: 790px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo Section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  font-size: 60px
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-section h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+/* Menu Section */
+.menu-section{
+  height: 790px;
+  margin: 20px;
+  padding: 10px;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  border-radius: 5px;
 }
-
-.sidebar-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.avatar-placeholder {
-  width: 100px;
-  height: 100px;
-  background-color: #ccc;
-  border-radius: 50%;
-  margin: 0 auto 10px;
-}
-
-.sidebar-nav ul {
+.menu-section ul {
   list-style: none;
   padding: 0;
 }
 
-.sidebar-nav li {
+.menu-section li {
   padding: 10px 0;
-  cursor: pointer;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* Main Content Styles */
