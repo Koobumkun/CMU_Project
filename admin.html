@@ -233,6 +233,7 @@
       });
     }
 
+
     // 현재 로그인된 사용자 정보 렌더링
     function renderUserName() {
       const currentUser = JSON.parse(localStorage.getItem("current_login"));
@@ -242,39 +243,6 @@
       } else {
         document.getElementById("user-name").textContent = "Guest";
       }
-    }
-
-    function handleAccept(request) {
-      // 요청 상태 변경
-      request.accept = true;
-
-      // 로컬스토리지 업데이트
-      const requests = getSellingRequestsFromLocalStorage();
-      const updatedRequests = requests.map((r) =>
-        r.date === request.date && r.type === request.type ? request : r
-      );
-      localStorage.setItem("selling_requests", JSON.stringify(updatedRequests));
-
-      // 테이블 다시 렌더링
-      renderSellingRequests(updatedRequests);
-    }
-
-    function handlePurchaseAccept(request) {
-      // 요청 상태 변경
-      request.accept = true;
-
-      // 로컬스토리지 업데이트
-      const requests = getPurchasingRequestsFromLocalStorage();
-      const updatedRequests = requests.map((r) =>
-        r.date === request.date && r.type === request.type ? request : r
-      );
-      localStorage.setItem(
-        "purchasing_requests",
-        JSON.stringify(updatedRequests)
-      );
-
-      // 테이블 다시 렌더링
-      renderPurchasingRequests(updatedRequests);
     }
 
     document.querySelectorAll(".menu-item").forEach((item) => {
@@ -289,9 +257,50 @@
       });
     });
 
+    function handleAccept(request) {
+      // 로컬스토리지에서 기존 요청 데이터 가져오기
+      const requests = getSellingRequestsFromLocalStorage();
+    
+      // 해당 요청을 찾아 accept 상태 변경
+      const updatedRequests = requests.map((r) => {
+        if (r.date === request.date && r.type === request.type) {
+          r.accept = true; // 상태 변경
+        }
+        return r;
+      });
+    
+      // 변경된 데이터 로컬스토리지에 저장
+      localStorage.setItem("selling_requests", JSON.stringify(updatedRequests));
+    
+      // 해당 테이블만 다시 렌더링
+      renderSellingRequests(updatedRequests);
+    }
+    
+    function handlePurchaseAccept(request) {
+      // 로컬스토리지에서 기존 요청 데이터 가져오기
+      const requests = getPurchasingRequestsFromLocalStorage();
+    
+      // 해당 요청을 찾아 accept 상태 변경
+      const updatedRequests = requests.map((r) => {
+        if (r.date === request.date && r.type === request.type) {
+          r.accept = true; // 상태 변경
+        }
+        return r;
+      });
+    
+      // 변경된 데이터 로컬스토리지에 저장
+      localStorage.setItem("purchasing_requests", JSON.stringify(updatedRequests));
+    
+      // 해당 테이블만 다시 렌더링
+      renderPurchasingRequests(updatedRequests);
+    }
+    
+
+
+
     // 초기화 시 실행
     document.addEventListener("DOMContentLoaded", () => {
-      renderUserName(); // 유저 이름 렌더링
+      
 
       const batteries = getBatteriesFromLocalStorage();
       renderBatteries(batteries);
@@ -301,6 +310,8 @@
 
       const purchasingRequests = getPurchasingRequestsFromLocalStorage();
       renderPurchasingRequests(purchasingRequests);
+
+      renderUserName(); // 유저 이름 렌더링
 
       // 로그아웃 이벤트 처리
       document
