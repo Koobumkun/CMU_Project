@@ -1,122 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recycle Battery Dashboard</title>
-  <link rel="stylesheet" href="user_dashboard.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="./images/User.png" alt="User Avatar" class="user-avatar">
-        <h3>Username</h3>
-      </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li>Dashboard</li>
-          <li>Sell</li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!-- Main Dashboard -->
-    <main class="dashboard">
-      <h1>Dashboard</h1>
-      <div class="stats-cards">
-        <div class="card">
-          <h4>Current Credits</h4>
-          <p>15.5</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recycle Battery Dashboard</title>
+    <link rel="stylesheet" href="user_dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <img src="./images/User.png" alt="User Avatar" class="user-avatar" />
+          <h3>Username</h3>
         </div>
-        <div class="card">
-          <h4>Total Batteries Sold</h4>
-          <p>50</p>
-        </div>
-        <div class="card">
-          <h4>Carbon Emission Reduced</h4>
-          <p>15.5</p>
-        </div>
-      </div>
-      <div class="dashboard-content">
-        <div class="graph-section">
-          <h3>User Graph</h3>
-          <canvas id="carbonContributionGraph" width="400" height="200"></canvas>
-          <script>
-            // 예시 데이터 (사용자가 배터리를 판매한 날짜와 판매량)
-            const salesData = [
-              { date: "2024-01", batteriesSold: 10 },
-              { date: "2024-02", batteriesSold: 15 },
-              { date: "2024-03", batteriesSold: 7 },
-              { date: "2024-04", batteriesSold: 12 },
-              { date: "2024-05", batteriesSold: 5 }
-            ];
+        <nav class="sidebar-nav">
+          <ul>
+            <li>Dashboard</li>
+            <li>Sell</li>
+          </ul>
+        </nav>
+      </aside>
 
-            // 탄소 배출량 기여도 계산 (판매된 배터리 수 * 0.05kg CO2를 탄소 배출량으로 설정)
-            const labels = salesData.map(item => item.date);
-            const carbonContributions = salesData.map(item => item.batteriesSold * 0.05); // 1배터리당 0.05kg CO2 기여
+      <!-- Main Dashboard -->
+      <main class="dashboard">
+        <h1>Dashboard</h1>
+        <div class="stats-cards">
+          <div class="card">
+            <h4>Current Credits</h4>
+            <p>15.5</p>
+          </div>
+          <div class="card">
+            <h4>Total Batteries Sold</h4>
+            <p>50</p>
+          </div>
+          <div class="card">
+            <h4>Carbon Emission Reduced</h4>
+            <p>15.5</p>
+          </div>
+        </div>
+        <div class="dashboard-content">
+          <div class="graph-section">
+            <h3>User Graph</h3>
+            <canvas
+              id="carbonContributionGraph"
+              width="400"
+              height="200"
+            ></canvas>
+            <script>
+              // 예시 데이터 (사용자가 배터리를 판매한 날짜와 판매량)
+              const salesData = [
+                { date: "2024-01", batteriesSold: 10 },
+                { date: "2024-02", batteriesSold: 15 },
+                { date: "2024-03", batteriesSold: 7 },
+                { date: "2024-04", batteriesSold: 12 },
+                { date: "2024-05", batteriesSold: 5 },
+              ];
 
-            // Chart.js로 그래프 그리기
-            const ctx = document.getElementById('carbonContributionGraph').getContext('2d');
-            const carbonContributionGraph = new Chart(ctx, {
-              type: 'line', // 선 그래프
-              data: {
-                labels: labels, // x축 (기간)
-                datasets: [{
-                  label: 'Carbon Emission Contribution (kg CO2)',
-                  data: carbonContributions, // y축 (탄소 배출량 기여도)
-                  borderColor: 'rgba(75, 192, 192, 1)',
-                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                  fill: true,
-                  tension: 0.4 // 선의 곡선 정도
-                }]
-              },
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    beginAtZero: true, // y축 0부터 시작
-                    ticks: {
-                      stepSize: 0.5 // y축 간격
+              // 탄소 배출량 기여도 계산 (판매된 배터리 수 * 0.05kg CO2를 탄소 배출량으로 설정)
+              const labels = salesData.map((item) => item.date);
+              const carbonContributions = salesData.map(
+                (item) => item.batteriesSold * 0.05
+              ); // 1배터리당 0.05kg CO2 기여
+
+              // Chart.js로 그래프 그리기
+              const ctx = document
+                .getElementById("carbonContributionGraph")
+                .getContext("2d");
+              const carbonContributionGraph = new Chart(ctx, {
+                type: "line", // 선 그래프
+                data: {
+                  labels: labels, // x축 (기간)
+                  datasets: [
+                    {
+                      label: "Carbon Emission Contribution (kg CO2)",
+                      data: carbonContributions, // y축 (탄소 배출량 기여도)
+                      borderColor: "rgba(75, 192, 192, 1)",
+                      backgroundColor: "rgba(75, 192, 192, 0.2)",
+                      fill: true,
+                      tension: 0.4, // 선의 곡선 정도
                     },
-                    title: {
-                      display: true,
-                      text: 'Carbon Emission Contribution (kg CO2)'
-                    }
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  scales: {
+                    y: {
+                      beginAtZero: true, // y축 0부터 시작
+                      ticks: {
+                        stepSize: 0.5, // y축 간격
+                      },
+                      title: {
+                        display: true,
+                        text: "Carbon Emission Contribution (kg CO2)",
+                      },
+                    },
+                    x: {
+                      title: {
+                        display: true,
+                        text: "Period",
+                      },
+                    },
                   },
-                  x: {
-                    title: {
-                      display: true,
-                      text: 'Period'
-                    }
-                  }
-                }
-              }
-            });
-          </script>
-        </div>
-        <div class="rank-section">
-          <h3>Company Rank</h3>
-          <div class="rank-item">
-            <img src="./images/sungyillhightech.png" alt="SungEel HiTech Logo" class="rank-logo">
-            <span>SungEel HiTech</span>
-            <span>42.1%</span>
+                },
+              });
+            </script>
           </div>
-          <div class="rank-item">
-            <img src="./images/Econowatt.png" alt="Econowatt Logo" class="rank-logo">
-            <span>Econowatt</span>
-            <span>42.1%</span>
+          <div class="rank-section">
+            <h3>Company Rank</h3>
+            <div class="rank-item">
+              <img
+                src="./images/sungyillhightech.png"
+                alt="SungEel HiTech Logo"
+                class="rank-logo"
+              />
+              <span>SungEel HiTech</span>
+              <span>42.1%</span>
+            </div>
+            <div class="rank-item">
+              <img
+                src="./images/Econowatt.png"
+                alt="Econowatt Logo"
+                class="rank-logo"
+              />
+              <span>Econowatt</span>
+              <span>42.1%</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="recent-activity">
-        <h3>Recently Activity</h3>
-        <p>AAA Battery Sale</p>
-        <p>December 23, 2024</p>
-      </div>
-    </main>
-  </div>
-</body>
+        <div class="recent-activity">
+          <h3>Recent Activity</h3>
+          <table class="activity-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Activity</th>
+                <th>Credits Earned</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2024-05-01</td>
+                <td>Sold 5 batteries</td>
+                <td>2.5</td>
+              </tr>
+              <tr>
+                <td>2024-04-15</td>
+                <td>Sold 12 batteries</td>
+                <td>6.0</td>
+              </tr>
+              <tr>
+                <td>2024-03-20</td>
+                <td>Sold 7 batteries</td>
+                <td>3.5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
