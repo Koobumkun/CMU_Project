@@ -1,92 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Company Buy</title>
-  <link rel="stylesheet" href="company_buy.css">
-</head>
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="https://via.placeholder.com/100" alt="Company Logo" class="company-logo">
-        <h3>SungEel HiTech</h3>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recycle Battery Management</title>
+    <link rel="stylesheet" href="company_buy.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <h2>🔋Recycle Battery</h2>
+        </div>
+        <!-- Menu Section -->
+        <nav class="menu-section">
+          <img
+            src="./images/company.png"
+            alt="Company Logo"
+            class="company-logo"
+          />
+          <span>LG Energy Solution</span>
+          <ul>
+            <li>📋 Dashboard</li>
+            <li>💰 Buy</li>
+          </ul>
+        </nav>
       </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li>Dashboard</li>
-          <li>Buy</li>
-        </ul>
-      </nav>
-    </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <header class="main-header">
+      <!-- Main Content -->
+      <main class="main-content">
         <h1>Buy</h1>
-        <div class="filter">
-          <button>Alkaline</button>
-          <button>Lithium</button>
-          <button>Zinc-Carbon</button>
-          <button>Silver Oxide</button>
-          <button>Zinc-Air</button>
-        </div>
-        <div class="sort">
-          <span>Newest</span>
-        </div>
-      </header>
-
-      <section class="products">
-        <!-- Product Card -->
-        <div class="product-card">
-          <img src="https://via.placeholder.com/150" alt="Battery Image" class="product-image">
-          <div class="product-info">
-            <h4>AA 리튬 배터리</h4>
-            <p>상세 설명</p>
-            <p>1개에 800원</p>
-            <div class="product-actions">
-              <button>-</button>
-              <span>1개</span>
-              <button>+</button>
-              <button class="buy-button">구매</button>
-            </div>
+        <div class="content">
+          <div class="filters">
+            <button class="filter-btn">Alkaline</button>
+            <button class="filter-btn">Lithium</button>
+            <button class="filter-btn">Zinc-Carbon</button>
+            <button class="filter-btn">Silver Oxide</button>
+            <button class="filter-btn">Zinc-Air</button>
           </div>
+          <div class="products" id="product-list"></div>
         </div>
+      </main>
+    </div>
 
-        <!-- Additional Product Cards -->
-        <div class="product-card">
-          <img src="https://via.placeholder.com/150" alt="Battery Image" class="product-image">
-          <div class="product-info">
-            <h4>AA 리튬 배터리</h4>
-            <p>상세 설명</p>
-            <p>1개에 800원</p>
-            <div class="product-actions">
-              <button>-</button>
-              <span>1개</span>
-              <button>+</button>
-              <button class="buy-button">구매</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <img src="https://via.placeholder.com/150" alt="Battery Image" class="product-image">
-          <div class="product-info">
-            <h4>AA 리튬 배터리</h4>
-            <p>상세 설명</p>
-            <p>1개에 800원</p>
-            <div class="product-actions">
-              <button>-</button>
-              <span>1개</span>
-              <button>+</button>
-              <button class="buy-button">구매</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-</body>
+    <script src="company_buy.js"></script>
+  </body>
 </html>
