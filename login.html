@@ -53,6 +53,10 @@
 
           if (user) {
             alert(`Welcome, ${user.name}!`);
+
+            // 현재 로그인한 사용자 정보를 로컬스토리지에 저장
+            localStorage.setItem("current_login", JSON.stringify(user));
+
             // Role에 따라 리다이렉트
             if (user.role === "customer") {
               window.location.href = "user_dashboard.html";
@@ -152,7 +156,7 @@
               date: "12/19, 2024",
               amount: 20,
               costs: 50,
-              accept: true
+              accept: true,
             },
           ];
           localStorage.setItem(

@@ -12,20 +12,33 @@
       <div class="sidebar">
         <!-- Logo Section -->
         <div class="logo-section">
-          <img
-            src="./images/bettery.png"
-            alt="Battery Icon"
-            class="logo-icon"
-            style="width: 25px; height: 50px"
-          />
-          <h2>Recycle Battery</h2>
+          <a href="./login.html">
+            <img
+              src="./images/system_logo.png"
+              alt="Battery Icon"
+              class="logo-icon"
+            />
+            <h2>Lithium Loop</h2>
+          </a>
         </div>
         <!-- Menu Section -->
         <nav class="menu-section">
           <img src="./images/admin.jpg" alt="Company Logo" class="admin-logo" />
-          <span>Admin</span>
+          <span id="user-name">Admin</span>
+          <div class="logout-section" id="logout-section">
+            <img id="logout-btn" src="./images/logout.png" alt="logout" />
+            <p>Logout</p>
+          </div>
+
           <ul>
-            <li>Management</li>
+            <div class="menu-item selected">
+              <img
+                src="./images/dashboard.png"
+                alt="management_icon"
+                class="management-logo"
+              />
+              <li>Management</li>
+            </div>
           </ul>
         </nav>
       </div>
@@ -180,19 +193,19 @@
     function renderPurchasingRequests(data) {
       const tbody = document.getElementById("purchasing-requests-data");
       tbody.innerHTML = ""; // 기존 내용을 비우기
-    
+
       data.forEach((request) => {
         const row = document.createElement("tr");
-    
+
         // Accept 상태에 따라 Status 추가
         const statusCell = document.createElement("td");
         statusCell.textContent = request.accept ? "✅ Complete" : "⏳ Waiting";
         row.appendChild(statusCell);
-    
+
         // 나머지 데이터 필드 추가
         for (const key in request) {
           if (key === "accept") continue; // accept는 Status로 처리
-    
+
           const cell = document.createElement("td");
           if (key === "costs") {
             // Cost 필드에 단위 추가
@@ -202,25 +215,34 @@
           }
           row.appendChild(cell);
         }
-    
+
         // Accept 버튼 추가
         const actionCell = document.createElement("td");
         const button = document.createElement("button");
         button.textContent = request.accept ? "수락완료" : "수락";
         button.className = request.accept ? "disabled-button" : "action-button";
         button.disabled = request.accept;
-    
+
         // 버튼 클릭 이벤트
         button.addEventListener("click", () => handlePurchaseAccept(request));
-    
+
         actionCell.appendChild(button);
         row.appendChild(actionCell);
-    
+
         tbody.appendChild(row);
       });
     }
-    
-    
+
+    // 현재 로그인된 사용자 정보 렌더링
+    function renderUserName() {
+      const currentUser = JSON.parse(localStorage.getItem("current_login"));
+
+      if (currentUser && currentUser.name) {
+        document.getElementById("user-name").textContent = currentUser.name;
+      } else {
+        document.getElementById("user-name").textContent = "Guest";
+      }
+    }
 
     function handleAccept(request) {
       // 요청 상태 변경
@@ -240,20 +262,37 @@
     function handlePurchaseAccept(request) {
       // 요청 상태 변경
       request.accept = true;
-    
+
       // 로컬스토리지 업데이트
       const requests = getPurchasingRequestsFromLocalStorage();
       const updatedRequests = requests.map((r) =>
         r.date === request.date && r.type === request.type ? request : r
       );
-      localStorage.setItem("purchasing_requests", JSON.stringify(updatedRequests));
-    
+      localStorage.setItem(
+        "purchasing_requests",
+        JSON.stringify(updatedRequests)
+      );
+
       // 테이블 다시 렌더링
       renderPurchasingRequests(updatedRequests);
     }
-    
+
+    document.querySelectorAll(".menu-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        // 모든 메뉴 항목에서 `selected` 클래스 제거
+        document.querySelectorAll(".menu-item").forEach((menu) => {
+          menu.classList.remove("selected");
+        });
+
+        // 클릭된 항목에 `selected` 클래스 추가
+        item.classList.add("selected");
+      });
+    });
+
     // 초기화 시 실행
     document.addEventListener("DOMContentLoaded", () => {
+      renderUserName(); // 유저 이름 렌더링
+
       const batteries = getBatteriesFromLocalStorage();
       renderBatteries(batteries);
 
@@ -262,6 +301,17 @@
 
       const purchasingRequests = getPurchasingRequestsFromLocalStorage();
       renderPurchasingRequests(purchasingRequests);
+
+      // 로그아웃 이벤트 처리
+      document
+        .getElementById("logout-section")
+        .addEventListener("click", () => {
+          // 로컬스토리지에서 current_login 삭제
+          localStorage.removeItem("current_login");
+
+          // 로그인 페이지로 리다이렉트
+          window.location.href = "./login.html";
+        });
     });
   </script>
 </html>

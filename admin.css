@@ -5,26 +5,41 @@ body {
   background-color: #eff3fb;
 }
 
+a {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  text-decoration-line: none;
+  color: black;
+}
+
 .container {
   display: flex;
-  height: 100vh;
+  height: 95vh;
+  margin: 30px;
+  margin-bottom: 0px;
+  gap: 40px;
 }
 
 /* Sidebar Styles */
 .sidebar {
-  width: 250px;
-  height: 790px;
+  width: 300px;
+  height: 91.5vh;
   display: flex;
   flex-direction: column;
 }
 
 /* Logo Section */
 .logo-section {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  margin: 20px;
-  font-size: 60px;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.logo-section h2 {
+  font-size: 24px;
+  margin: 0;
 }
 
 .logo-icon {
@@ -33,25 +48,39 @@ body {
   margin-right: 10px;
 }
 
-.logo-section h2 {
-  font-size: 20px;
-  margin: 0;
-}
-
 /* Menu Section */
 .menu-section {
-  height: 790px;
-  margin: 20px;
-  margin-top: 0px;
+  text-align: center;
+  height: 100%;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 15px;
+  padding: 10px;
 }
 
-.menu-section .admin-logo {
-  width: 210px;
-  height: 210px;
-  border-radius: 10px;
+.admin-logo {
+  border-radius: 100px;
+  width: 120px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.logout-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+#logout-btn {
+  width: 30px;
+  height: 30px;
+}
+
+.logout-section p {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .menu-section span {
@@ -67,16 +96,51 @@ body {
   text-align: center;
 }
 
+/* Hover Effect for Menu Items */
+.menu-item {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.menu-item:hover {
+  background-color: #95c8ff;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Selected Menu Item */
+.menu-item.selected {
+  background-color: #1787ff;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.management-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .menu-section li {
   padding: 10px 0;
   font-size: 16px;
   cursor: pointer;
 }
 
+
 /* Main Content Styles */
 .main-content {
   flex: 1;
-  padding: 20px;
 }
 
 h1 {
