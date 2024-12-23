@@ -1,31 +1,3 @@
-// Sample data to simulate localStorage
-const products = [
-  {
-    id: 1,
-    name: "AA Lithium Battery",
-    price: 800,
-    quantity: 10,
-    image: "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/AA.jpg",
-  },
-  {
-    id: 2,
-    name: "AAA Lithium Battery",
-    price: 700,
-    quantity: 30,
-    image: "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/AAA.jpg",
-  },
-  {
-    id: 3,
-    name: "C Lithium Battery",
-    price: 1200,
-    quantity: 120,
-    image: "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/C.jpg",
-  },
-];
-
-// Save data to localStorage
-localStorage.setItem("products", JSON.stringify(products));
-
 // Load data from localStorage
 const productList = document.getElementById("product-list");
 const storedProducts = JSON.parse(localStorage.getItem("products"));

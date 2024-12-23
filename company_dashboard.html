@@ -85,7 +85,11 @@
         <div class="dashboard-content">
           <div class="graph-section">
             <h3>Company Graph</h3>
-            <canvas id="carbonContributionGraph" width="400" height="200"></canvas>
+            <canvas
+              id="carbonContributionGraph"
+              width="400"
+              height="200"
+            ></canvas>
             <script>
               // Example data for the graph
               const salesData = [
@@ -93,27 +97,33 @@
                 { date: "2024-02", batteriesSold: 15 },
                 { date: "2024-03", batteriesSold: 7 },
                 { date: "2024-04", batteriesSold: 12 },
-                { date: "2024-05", batteriesSold: 5 }
+                { date: "2024-05", batteriesSold: 5 },
               ];
 
               // Carbon emission contribution (calculating based on 0.05 kg CO2 per battery)
-              const labels = salesData.map(item => item.date);
-              const carbonContributions = salesData.map(item => item.batteriesSold * 0.05); // 1 battery = 0.05 kg CO2
+              const labels = salesData.map((item) => item.date);
+              const carbonContributions = salesData.map(
+                (item) => item.batteriesSold * 0.05
+              ); // 1 battery = 0.05 kg CO2
 
               // Drawing the graph
-              const ctx = document.getElementById('carbonContributionGraph').getContext('2d');
+              const ctx = document
+                .getElementById("carbonContributionGraph")
+                .getContext("2d");
               const carbonContributionGraph = new Chart(ctx, {
-                type: 'line',
+                type: "line",
                 data: {
                   labels: labels, // X-axis labels (dates)
-                  datasets: [{
-                    label: 'Carbon Emission Contribution (kg CO2)',
-                    data: carbonContributions, // Y-axis data (carbon contribution)
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    fill: true,
-                    tension: 0.4
-                  }]
+                  datasets: [
+                    {
+                      label: "Carbon Emission Contribution (kg CO2)",
+                      data: carbonContributions, // Y-axis data (carbon contribution)
+                      borderColor: "rgba(75, 192, 192, 1)",
+                      backgroundColor: "rgba(75, 192, 192, 0.2)",
+                      fill: true,
+                      tension: 0.4,
+                    },
+                  ],
                 },
                 options: {
                   responsive: true,
@@ -121,21 +131,21 @@
                     y: {
                       beginAtZero: true,
                       ticks: {
-                        stepSize: 0.5
+                        stepSize: 0.5,
                       },
                       title: {
                         display: true,
-                        text: 'Carbon Emission Contribution (kg CO2)'
-                      }
+                        text: "Carbon Emission Contribution (kg CO2)",
+                      },
                     },
                     x: {
                       title: {
                         display: true,
-                        text: 'Period'
-                      }
-                    }
-                  }
-                }
+                        text: "Period",
+                      },
+                    },
+                  },
+                },
               });
             </script>
           </div>
@@ -159,4 +169,44 @@
       </main>
     </div>
   </body>
+  <script>
+    // 현재 로그인된 사용자 정보 렌더링
+    function renderUserName() {
+      const currentUser = JSON.parse(localStorage.getItem("current_login"));
+
+      if (currentUser && currentUser.name) {
+        document.getElementById("user-name").textContent = currentUser.name;
+      } else {
+        document.getElementById("user-name").textContent = "Guest";
+      }
+    }
+
+    document.querySelectorAll(".menu-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        // 모든 메뉴 항목에서 `selected` 클래스 제거
+        document.querySelectorAll(".menu-item").forEach((menu) => {
+          menu.classList.remove("selected");
+        });
+
+        // 클릭된 항목에 `selected` 클래스 추가
+        item.classList.add("selected");
+      });
+    });
+
+    // 초기화 시 실행
+    document.addEventListener("DOMContentLoaded", () => {
+      renderUserName(); // 유저 이름 렌더링
+
+      // 로그아웃 이벤트 처리
+      document
+        .getElementById("logout-section")
+        .addEventListener("click", () => {
+          // 로컬스토리지에서 current_login 삭제
+          localStorage.removeItem("current_login");
+
+          // 로그인 페이지로 리다이렉트
+          window.location.href = "./login.html";
+        });
+    });
+  </script>
 </html>
