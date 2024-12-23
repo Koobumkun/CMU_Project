@@ -18,6 +18,12 @@ body {
   flex-direction: column;
 }
 
+.company-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
 /* Logo Section */
 .logo-section {
   display: flex;
@@ -165,4 +171,8 @@ input[name="quantity"] {
   display: inline-block;
   gap: 10px;
   text-align: right;
+}
+
+a {
+  text-decoration: none;
 }
