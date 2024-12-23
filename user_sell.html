@@ -1,154 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Sell</title>
+    <link rel="stylesheet" href="user_sell.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Sell</title>
-  <link rel="stylesheet" href="user_sell.css">
-</head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <a href="./login.html">
+            <img
+              src="./images/system_logo.png"
+              alt="Battery Icon"
+              class="logo-icon"
+            />
+            <h2>Lithium Loop</h2>
+          </a>
+        </div>
+        <!-- Menu Section -->
+        <nav class="menu-section">
+          <img
+            src="./images/sungyillhightech.png"
+            alt="Company Logo"
+            class="admin-logo"
+          />
+          <span id="user-name">SungEel HiTech</span>
+          <div class="logout-section" id="logout-section">
+            <img id="logout-btn" src="./images/logout.png" alt="logout" />
+            <p>Logout</p>
+          </div>
 
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Logo Section -->
-      <div class="logo-section">
-        <h2>&nbsp;Recycle Battery</h2>
-      </div>
-
-      <!-- Menu Section -->
-      <div class="sidebar-header">
-        <img src="https://via.placeholder.com/100" alt="User Avatar" class="user-avatar">
-        <h3>Username</h3>
-        <nav class="sidebar-nav">
           <ul>
-            <li>
+            <div class="menu-item">
               <a href="./user_dashboard.html">
-                <img src="./images/dashboard.png" style="width: 25px; height: 25px"/>
-                Dashboard
+                <img
+                  src="./images/dashboard.png"
+                  alt="management_icon"
+                  class="management-logo"
+                />
+                <li>Dashboard</li>
               </a>
-            </li>
-            <li>
+            </div>
+          </ul>
+          <ul>
+            <div class="menu-item selected">
               <a href="./user_sell.html">
-                <img src="./images/sell.png" />
-                Sell
+                <img
+                  src="./images/sell.png"
+                  alt="management_icon"
+                  class="management-logo"
+                />
+                <li>Sell</li>
               </a>
-            </li>
+            </div>
           </ul>
         </nav>
       </div>
+      <!-- Main Content -->
+      <main class="main-content">
+        <h1>Sell</h1>
+
+        <!-- Sell History -->
+        <section id="sell-history">
+          <h3>History of Sales Applications</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody id="sell-list"></tbody>
+          </table>
+        </section>
+
+        <!-- Selling Form -->
+        <section id="selling-form">
+          <h3>Selling Form</h3>
+          <form>
+            <div class="form-group">
+              <label for="battery-type">Type of Battery</label>
+              <select id="battery-type">
+                <option>Lithium AAA</option>
+                <option>Alkaline AA</option>
+                <option>Nickel-Cadmium</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="amount">amount?</label>
+              <input type="number" id="amount" placeholder="Enter amount" />
+            </div>
+            <div class="form-group">
+              <p>Selling Price</p>
+              <h2 id="price"></h2>
+            </div>
+            <button type="submit" class="submit-button">
+              Applying to sell
+            </button>
+          </form>
+        </section>
+      </main>
     </div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <h1>Sell</h1>
+    <script>
+      document.getElementById("amount").addEventListener("input", function () {
+        const amount = parseInt(this.value, 10) || 0; // 입력된 수량
+        const type = document.getElementById("battery-type").value; // 배터리 타입 선택값
+        let pricePerUnit = 0;
 
-      <!-- Sell History -->
-      <section id="sell-history">
-        <h3>History of Sales Applications</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Status</th>
-              <th>Type</th>
-              <th>Date</th>
-              <th>Cost</th>
-            </tr>
-          </thead>
-          <tbody id="sell-list"></tbody>
-        </table>
-      </section>
+        // 배터리 타입별 단가 설정
+        if (type === "Lithium AAA") {
+          pricePerUnit = 100;
+        } else if (type === "Alkaline AA") {
+          pricePerUnit = 80;
+        } else {
+          pricePerUnit = 60;
+        }
 
-      <!-- Selling Form -->
-      <section id="selling-form">
-        <h3>Selling Form</h3>
-        <form>
-          <div class="form-group">
-            <label for="battery-type">Type of Battery</label>
-            <select id="battery-type">
-              <option>Lithium AAA</option>
-              <option>Alkaline AA</option>
-              <option>Nickel-Cadmium</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="amount">amount?</label>
-            <input type="number" id="amount" placeholder="Enter amount">
-          </div>
-          <div class="form-group">
-            <p>Selling Price</p>
-            <h2 id="price"></h2>
-          </div>
-          <button type="submit" class="submit-button">Applying to sell</button>
-        </form>
-      </section>
-    </main>
-  </div>
-  <script>
-    document.getElementById("amount").addEventListener("input", function () {
-      const amount = parseInt(this.value, 10) || 0; // 입력된 수량
-      const type = document.getElementById("battery-type").value; // 배터리 타입 선택값
-      let pricePerUnit = 0;
+        // 총 가격 계산 및 표시
+        const totalPrice = amount * pricePerUnit;
+        document.getElementById("price").textContent = `${totalPrice}$`;
+      });
 
-      // 배터리 타입별 단가 설정
-      if (type === "Lithium AAA") {
-        pricePerUnit = 100;
-      } else if (type === "Alkaline AA") {
-        pricePerUnit = 80;
-      } else {
-        pricePerUnit = 60;
-      }
+      const sellHistory = [];
 
-      // 총 가격 계산 및 표시
-      const totalPrice = amount * pricePerUnit;
-      document.getElementById("price").textContent = `${totalPrice}$`;
-    });
+      // 폼 요소 가져오기
+      const form = document.getElementById("selling-form");
+      const historyBody = document.getElementById("sell-list");
 
-    const sellHistory = [];
+      // 폼 제출 이벤트
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // 폼 기본 동작 방지
 
-    // 폼 요소 가져오기
-    const form = document.getElementById("selling-form");
-    const historyBody = document.getElementById("sell-list");
+        // 입력 값 가져오기
+        const type = document.getElementById("battery-type").value;
+        const amount = parseInt(document.getElementById("amount").value, 10);
+        const price = parseInt(
+          document.getElementById("price").textContent,
+          10
+        );
 
-    // 폼 제출 이벤트
-    form.addEventListener("submit", function (e) {
-      e.preventDefault(); // 폼 기본 동작 방지
+        // 현재 날짜 생성
+        const date = new Date().toLocaleDateString();
 
-      // 입력 값 가져오기
-      const type = document.getElementById("battery-type").value;
-      const amount = parseInt(document.getElementById("amount").value, 10);
-      const price = parseInt(document.getElementById("price").textContent, 10);
+        // 새로운 항목 추가
+        const newItem = {
+          status: "⏳ Waiting",
+          type,
+          amount,
+          date,
+          cost: `${price}$`,
+        };
 
-      // 현재 날짜 생성
-      const date = new Date().toLocaleDateString();
+        // 배열에 추가
+        sellHistory.push(newItem);
 
-      // 새로운 항목 추가
-      const newItem = {
-        status: "⏳ Waiting",
-        type,
-        amount,
-        date,
-        cost: `${price}$`
-      };
+        // 테이블 업데이트
+        updateTable();
+      });
 
-      // 배열에 추가
-      sellHistory.push(newItem);
+      // 테이블 업데이트 함수
+      function updateTable() {
+        // 테이블 초기화
+        historyBody.innerHTML = "";
 
-      // 테이블 업데이트
-      updateTable();
-    });
+        // 배열의 항목을 테이블에 추가
+        sellHistory.forEach((item) => {
+          const row = document.createElement("tr");
 
-    // 테이블 업데이트 함수
-    function updateTable() {
-      // 테이블 초기화
-      historyBody.innerHTML = "";
-
-      // 배열의 항목을 테이블에 추가
-      sellHistory.forEach((item) => {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
+          row.innerHTML = `
           <td>${item.status}</td>
           <td>${item.type}</td>
           <td>${item.amount}</td>
@@ -156,11 +183,47 @@
           <td>${item.cost}</td>
         `;
 
-        historyBody.appendChild(row);
+          historyBody.appendChild(row);
+        });
+      }
+
+      // 현재 로그인된 사용자 정보 렌더링
+      function renderUserName() {
+        const currentUser = JSON.parse(localStorage.getItem("current_login"));
+
+        if (currentUser && currentUser.name) {
+          document.getElementById("user-name").textContent = currentUser.name;
+        } else {
+          document.getElementById("user-name").textContent = "Guest";
+        }
+      }
+      document.querySelectorAll(".menu-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          // 모든 메뉴 항목에서 `selected` 클래스 제거
+          document.querySelectorAll(".menu-item").forEach((menu) => {
+            menu.classList.remove("selected");
+          });
+
+          // 클릭된 항목에 `selected` 클래스 추가
+          item.classList.add("selected");
+        });
       });
-    }
-  </script>
 
-</body>
+      // 초기화 시 실행
+      document.addEventListener("DOMContentLoaded", () => {
+        renderUserName(); // 유저 이름 렌더링
 
+        // 로그아웃 이벤트 처리
+        document
+          .getElementById("logout-section")
+          .addEventListener("click", () => {
+            // 로컬스토리지에서 current_login 삭제
+            localStorage.removeItem("current_login");
+
+            // 로그인 페이지로 리다이렉트
+            window.location.href = "./login.html";
+          });
+      });
+    </script>
+  </body>
 </html>

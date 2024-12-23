@@ -1,38 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recycle Battery Dashboard</title>
-  <link rel="stylesheet" href="user_dashboard.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="./images/User.png" alt="User Avatar" class="user-avatar">
-        <h3>Username</h3>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recycle Battery Dashboard</title>
+    <link rel="stylesheet" href="user_dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <a href="./login.html">
+            <img
+              src="./images/system_logo.png"
+              alt="Battery Icon"
+              class="logo-icon"
+            />
+            <h2>Lithium Loop</h2>
+          </a>
+        </div>
+        <!-- Menu Section -->
+        <nav class="menu-section">
+          <img
+            src="./images/sungyillhightech.png"
+            alt="Company Logo"
+            class="admin-logo"
+          />
+          <span id="user-name">SungEel HiTech</span>
+          <div class="logout-section" id="logout-section">
+            <img id="logout-btn" src="./images/logout.png" alt="logout" />
+            <p>Logout</p>
+          </div>
+
+          <ul>
+            <div class="menu-item selected">
+              <a href="./user_dashboard.html">
+                <img
+                  src="./images/dashboard.png"
+                  alt="management_icon"
+                  class="management-logo"
+                />
+                <li>Dashboard</li>
+              </a>
+            </div>
+          </ul>
+          <ul>
+            <div class="menu-item">
+              <a href="./user_sell.html">
+                <img
+                  src="./images/sell.png"
+                  alt="management_icon"
+                  class="management-logo"
+                />
+                <li>Sell</li>
+              </a>
+            </div>
+          </ul>
+        </nav>
       </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li>
-            <a href="./user_dashboard.html">
-              <img src="./images/dashboard.png" style="width: 25px; height: 25px"/>
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="./user_sell.html
-            ">
-              <img src="./images/sell.png" />
-              Sell
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
 
       <!-- Main Dashboard -->
       <main class="dashboard">
@@ -177,8 +205,48 @@
                 <td>0.5</td>
               </tr>
             </tbody>
+          </table>
         </div>
       </main>
     </div>
   </body>
+  <script>
+    // 현재 로그인된 사용자 정보 렌더링
+    function renderUserName() {
+      const currentUser = JSON.parse(localStorage.getItem("current_login"));
+
+      if (currentUser && currentUser.name) {
+        document.getElementById("user-name").textContent = currentUser.name;
+      } else {
+        document.getElementById("user-name").textContent = "Guest";
+      }
+    }
+    document.querySelectorAll(".menu-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        // 모든 메뉴 항목에서 `selected` 클래스 제거
+        document.querySelectorAll(".menu-item").forEach((menu) => {
+          menu.classList.remove("selected");
+        });
+
+        // 클릭된 항목에 `selected` 클래스 추가
+        item.classList.add("selected");
+      });
+    });
+
+    // 초기화 시 실행
+    document.addEventListener("DOMContentLoaded", () => {
+      renderUserName(); // 유저 이름 렌더링
+
+      // 로그아웃 이벤트 처리
+      document
+        .getElementById("logout-section")
+        .addEventListener("click", () => {
+          // 로컬스토리지에서 current_login 삭제
+          localStorage.removeItem("current_login");
+
+          // 로그인 페이지로 리다이렉트
+          window.location.href = "./login.html";
+        });
+    });
+  </script>
 </html>

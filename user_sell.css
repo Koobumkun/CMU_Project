@@ -5,52 +5,135 @@ body {
   background-color: #eff3fb;
 }
 
+a {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  text-decoration-line: none;
+  color: black;
+}
+
 .container {
   display: flex;
-  height: 100vh;
+  height: 95vh;
+  margin: 30px;
+  margin-bottom: 0px;
+  gap: 40px;
 }
 
 /* Sidebar Styles */
 .sidebar {
-  width: 250px;
-  height: 796px;
-  padding: 20px;
-}
-
-.sidebar-header {
-  text-align: center;
-  height: 660px;
-  margin-bottom: 20px;
-  background-color: #fff;
-  padding-top: 12px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.logo-section {
+  width: 300px;
+  height: 91.5vh;
   display: flex;
-  align-items: center;
-  font-size: 16px;
+  flex-direction: column;
+}
+
+/* Logo Section */
+.logo-section {
+  margin-top: 10px;
   margin-bottom: 12px;
+  text-align: center;
 }
 
-.user-avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+.logo-section h2 {
+  font-size: 24px;
+  margin: 0;
 }
 
-.sidebar-nav{
-  padding-left: 12px;
-  text-align: left;
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
-.sidebar-nav ul {
+
+/* Menu Section */
+.menu-section {
+  text-align: center;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.admin-logo {
+  border-radius: 100px;
+  width: 120px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.logout-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+#logout-btn {
+  width: 30px;
+  height: 30px;
+}
+
+.logout-section p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-section span {
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.menu-section ul {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 
-.sidebar-nav li {
+/* Hover Effect for Menu Items */
+.menu-item {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.menu-item:hover {
+  background-color: #95c8ff;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Selected Menu Item */
+.menu-item.selected {
+  background-color: #1787ff;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.management-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.menu-section li {
   padding: 10px 0;
+  font-size: 16px;
   cursor: pointer;
 }
 
