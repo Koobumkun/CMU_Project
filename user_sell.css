@@ -185,7 +185,14 @@ h1 {
   font-weight: bold;
 }
 
-#selling-form input, .selling-form select {
+#selling-form input {
+  width: 98%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#battery-type {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
