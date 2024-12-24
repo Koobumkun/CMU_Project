@@ -12,26 +12,24 @@
       <div class="sidebar">
         <!-- Logo Section -->
         <div class="logo-section">
-          <a href="./login.html">
-            <img
-              src="./images/system_logo.png"
-              alt="Battery Icon"
-              class="logo-icon"
-            />
-            <h2>Lithium Loop</h2>
-          </a>
+          <img
+            src="./images/system_logo.png"
+            alt="Battery Icon"
+            class="logo-icon"
+          />
+          <h2>Lithium Loop</h2>
         </div>
         <!-- Menu Section -->
         <nav class="menu-section">
           <img src="./images/admin.jpg" alt="Company Logo" class="admin-logo" />
-          <span id="user-name">Admin</span>
+          <span id="user-name"></span>
           <div class="logout-section" id="logout-section">
             <img id="logout-btn" src="./images/logout.png" alt="logout" />
             <p>Logout</p>
           </div>
 
           <ul>
-            <div class="menu-item selected">
+            <div class="menu-item selected" id="management-item">
               <img
                 src="./images/dashboard.png"
                 alt="management_icon"
@@ -49,7 +47,7 @@
 
         <!-- Our Batteries -->
         <section class="section">
-          <h2>Our Batteries</h2>
+          <h2 style="margin-top: 0px;">Our Batteries</h2>
           <table>
             <thead>
               <tr>
@@ -65,7 +63,7 @@
 
         <!-- Selling Requests -->
         <section class="section">
-          <h2>Selling Requests</h2>
+          <h2 style="margin-top: 0px;">Selling Requests</h2>
           <table>
             <thead>
               <tr>
@@ -84,7 +82,7 @@
 
         <!-- Purchasing Requests -->
         <section class="section">
-          <h2>Purchasing Requests</h2>
+          <h2 style="margin-top: 0px;">Purchasing Requests</h2>
           <table>
             <thead>
               <tr>
@@ -104,6 +102,11 @@
     </div>
   </body>
   <script>
+    
+    document.getElementById('management-item').addEventListener('click', function () {
+      window.location.href = 'admin.html'; // Target page
+    });
+
     // 로컬스토리지에서 데이터 가져오기
     function getBatteriesFromLocalStorage() {
       const batteries = localStorage.getItem("batteries");
@@ -233,7 +236,6 @@
       });
     }
 
-
     // 현재 로그인된 사용자 정보 렌더링
     function renderUserName() {
       const currentUser = JSON.parse(localStorage.getItem("current_login"));
@@ -260,7 +262,7 @@
     function handleAccept(request) {
       // 로컬스토리지에서 기존 요청 데이터 가져오기
       const requests = getSellingRequestsFromLocalStorage();
-    
+
       // 해당 요청을 찾아 accept 상태 변경
       const updatedRequests = requests.map((r) => {
         if (r.date === request.date && r.type === request.type) {
@@ -268,18 +270,18 @@
         }
         return r;
       });
-    
+
       // 변경된 데이터 로컬스토리지에 저장
       localStorage.setItem("selling_requests", JSON.stringify(updatedRequests));
-    
+
       // 해당 테이블만 다시 렌더링
       renderSellingRequests(updatedRequests);
     }
-    
+
     function handlePurchaseAccept(request) {
       // 로컬스토리지에서 기존 요청 데이터 가져오기
       const requests = getPurchasingRequestsFromLocalStorage();
-    
+
       // 해당 요청을 찾아 accept 상태 변경
       const updatedRequests = requests.map((r) => {
         if (r.date === request.date && r.type === request.type) {
@@ -287,21 +289,19 @@
         }
         return r;
       });
-    
+
       // 변경된 데이터 로컬스토리지에 저장
-      localStorage.setItem("purchasing_requests", JSON.stringify(updatedRequests));
-    
+      localStorage.setItem(
+        "purchasing_requests",
+        JSON.stringify(updatedRequests)
+      );
+
       // 해당 테이블만 다시 렌더링
       renderPurchasingRequests(updatedRequests);
     }
-    
-
-
 
     // 초기화 시 실행
     document.addEventListener("DOMContentLoaded", () => {
-      
-
       const batteries = getBatteriesFromLocalStorage();
       renderBatteries(batteries);
 

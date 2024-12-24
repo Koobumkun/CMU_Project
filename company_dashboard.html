@@ -29,14 +29,14 @@
             alt="Company Logo"
             class="admin-logo"
           />
-          <span id="user-name">SungEel HiTech</span>
+          <span id="user-name"></span>
           <div class="logout-section" id="logout-section">
             <img id="logout-btn" src="./images/logout.png" alt="logout" />
             <p>Logout</p>
           </div>
 
           <ul>
-            <div class="menu-item selected">
+            <div class="menu-item selected" id="dashboard-menu-item">
               <a href="./company_dashboard.html">
                 <img
                   src="./images/dashboard.png"
@@ -48,7 +48,7 @@
             </div>
           </ul>
           <ul>
-            <div class="menu-item">
+            <div class="menu-item" id="buy-menu-item">
               <a href="./company_buy.html">
                 <img
                   src="./images/buy.png"
@@ -64,7 +64,7 @@
 
       <!-- Main Dashboard -->
       <main class="dashboard">
-        <h1>Dashboard</h1>
+        <h1 style="margin-top: 0px;">Dashboard</h1>
         <div class="stats-cards">
           <div class="card">
             <h4>Current Credits</h4>
@@ -84,7 +84,7 @@
         </div>
         <div class="dashboard-content">
           <div class="graph-section">
-            <h3>Emission Savings Graph</h3>
+            <h3 style="margin-top: 0px;">Emission Savings Graph</h3>
             <canvas
               id="carbonContributionGraph"
               width="400"
@@ -150,7 +150,8 @@
             </script>
           </div>
           <div class="rank-section">
-            <table class="rank-table">
+            <h3 style="margin-top: 0px;">Company Rank</h3>
+            <table style="margin-top: 0px;" class="rank-table">
               <thead>
                 <tr>
                   <th width="10%">Rank</th>
@@ -208,7 +209,7 @@
           </div>
         </div>
         <div class="purchase-history">
-          <h3>Recent Purchase History</h3>
+          <h3 style="margin-top: 0px;">Recent Purchase History</h3>
           <table>
             <thead>
               <tr>
@@ -262,6 +263,14 @@
     </div>
   </body>
   <script>
+    document.getElementById('buy-menu-item').addEventListener('click', function () {
+      window.location.href = 'company_buy.html'; // Target page
+    });
+
+    document.getElementById('dashboard-menu-item').addEventListener('click', function () {
+      window.location.href = 'company_dashboard.html'; // Target page
+    });
+
     // 현재 로그인된 사용자 정보 렌더링
     function renderUserName() {
       const currentUser = JSON.parse(localStorage.getItem("current_login"));

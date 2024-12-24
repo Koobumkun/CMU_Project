@@ -12,14 +12,12 @@
       <div class="sidebar">
         <!-- Logo Section -->
         <div class="logo-section">
-          <a href="./login.html">
-            <img
-              src="./images/system_logo.png"
-              alt="Battery Icon"
-              class="logo-icon"
-            />
-            <h2>Lithium Loop</h2>
-          </a>
+          <img
+            src="./images/system_logo.png"
+            alt="Battery Icon"
+            class="logo-icon"
+          />
+          <h2>Lithium Loop</h2>
         </div>
         <!-- Menu Section -->
         <nav class="menu-section">
@@ -28,34 +26,30 @@
             alt="Company Logo"
             class="admin-logo"
           />
-          <span id="user-name">SungEel HiTech</span>
+          <span id="user-name"></span>
           <div class="logout-section" id="logout-section">
             <img id="logout-btn" src="./images/logout.png" alt="logout" />
             <p>Logout</p>
           </div>
 
           <ul>
-            <div class="menu-item">
-              <a href="./company_dashboard.html">
-                <img
-                  src="./images/dashboard.png"
-                  alt="management_icon"
-                  class="management-logo"
-                />
-                <li>Dashboard</li>
-              </a>
+            <div class="menu-item" id="dashboard-menu-item">
+              <img
+                src="./images/dashboard.png"
+                alt="management_icon"
+                class="management-logo"
+              />
+              <li>Dashboard</li>
             </div>
           </ul>
           <ul>
-            <div class="menu-item selected">
-              <a href="./company_buy.html">
-                <img
-                  src="./images/buy.png"
-                  alt="management_icon"
-                  class="management-logo"
-                />
-                <li>Buy</li>
-              </a>
+            <div class="menu-item selected" id="buy-menu-item">
+              <img
+                src="./images/buy.png"
+                alt="management_icon"
+                class="management-logo"
+              />
+              <li>Buy</li>
             </div>
           </ul>
         </nav>
@@ -63,7 +57,7 @@
 
       <!-- Main Content -->
       <main class="main-content">
-        <h1>Buy</h1>
+        <h1 style="margin-top: 0px;">Buy</h1>
         <div class="content">
           <div class="filters">
             <button class="filter-btn">Alkaline</button>

@@ -2,6 +2,14 @@
 const productList = document.getElementById("product-list");
 const storedProducts = JSON.parse(localStorage.getItem("products"));
 
+document.getElementById('buy-menu-item').addEventListener('click', function () {
+  window.location.href = 'company_buy.html'; // Target page
+});
+
+document.getElementById('dashboard-menu-item').addEventListener('click', function () {
+  window.location.href = 'company_dashboard.html'; // Target page
+});
+
 // Render products
 function renderProducts(products) {
   productList.innerHTML = "";

@@ -105,6 +105,7 @@ a {
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .menu-item:hover {
@@ -202,7 +203,7 @@ h1 {
 #selling-form .submit-button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #79D7BE;
   color: #fff;
   border: none;
   border-radius: 5px;

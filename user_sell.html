@@ -29,14 +29,14 @@
             alt="Company Logo"
             class="admin-logo"
           />
-          <span id="user-name">SungEel HiTech</span>
+          <span id="user-name"></span>
           <div class="logout-section" id="logout-section">
             <img id="logout-btn" src="./images/logout.png" alt="logout" />
             <p>Logout</p>
           </div>
 
           <ul>
-            <div class="menu-item">
+            <div class="menu-item" id="dashboard-menu-item">
               <a href="./user_dashboard.html">
                 <img
                   src="./images/dashboard.png"
@@ -48,7 +48,7 @@
             </div>
           </ul>
           <ul>
-            <div class="menu-item selected">
+            <div class="menu-item selected" id="sell-menu-item">
               <a href="./user_sell.html">
                 <img
                   src="./images/sell.png"
@@ -110,6 +110,14 @@
     </div>
 
     <script>
+      document.getElementById('sell-menu-item').addEventListener('click', function () {
+        window.location.href = 'user_sell.html'; // Target page
+      });
+      
+      document.getElementById('dashboard-menu-item').addEventListener('click', function () {
+        window.location.href = 'user_dashboard.html'; // Target page
+      });
+
       document.getElementById("amount").addEventListener("input", function () {
         const amount = parseInt(this.value, 10) || 0; // 입력된 수량
         const type = document.getElementById("battery-type").value; // 배터리 타입 선택값
