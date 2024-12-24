@@ -2,13 +2,15 @@
 const productList = document.getElementById("product-list");
 const storedProducts = JSON.parse(localStorage.getItem("products"));
 
-document.getElementById('buy-menu-item').addEventListener('click', function () {
-  window.location.href = 'company_buy.html'; // Target page
+document.getElementById("buy-menu-item").addEventListener("click", function () {
+  window.location.href = "company_buy.html"; // Target page
 });
 
-document.getElementById('dashboard-menu-item').addEventListener('click', function () {
-  window.location.href = 'company_dashboard.html'; // Target page
-});
+document
+  .getElementById("dashboard-menu-item")
+  .addEventListener("click", function () {
+    window.location.href = "company_dashboard.html"; // Target page
+  });
 
 // Render products
 function renderProducts(products) {
@@ -35,6 +37,11 @@ function renderProducts(products) {
     document
       .getElementById(`buy-${product.id}`)
       .addEventListener("click", () => {
+        const isConfirmed = confirm("Do you want to buy?");
+        if (!isConfirmed) {
+          return; // 사용자가 취소를 눌렀을 경우 중단
+        }
+
         const quantityInput = document.getElementById(`quantity-${product.id}`);
         const quantity = parseInt(quantityInput.value);
         if (quantity > 0 && quantity <= product.quantity) {
@@ -56,6 +63,9 @@ function renderProducts(products) {
         } else {
           alert("Invalid quantity");
         }
+
+        // 성공 알림 표시
+        alert("The transaction has been successfully completed!");
       });
   });
 }
@@ -83,22 +93,18 @@ document.querySelectorAll(".menu-item").forEach((item) => {
   });
 });
 
+// 초기화 시 실행
+document.addEventListener("DOMContentLoaded", () => {
+  renderUserName(); // 유저 이름 렌더링
 
-    // 초기화 시 실행
-    document.addEventListener("DOMContentLoaded", () => {
+  // 로그아웃 이벤트 처리
+  document.getElementById("logout-section").addEventListener("click", () => {
+    // 로컬스토리지에서 current_login 삭제
+    localStorage.removeItem("current_login");
 
-      renderUserName(); // 유저 이름 렌더링
-
-      // 로그아웃 이벤트 처리
-      document
-        .getElementById("logout-section")
-        .addEventListener("click", () => {
-          // 로컬스토리지에서 current_login 삭제
-          localStorage.removeItem("current_login");
-
-          // 로그인 페이지로 리다이렉트
-          window.location.href = "./login.html";
-        });
-    });
+    // 로그인 페이지로 리다이렉트
+    window.location.href = "./login.html";
+  });
+});
 
 renderProducts(storedProducts);

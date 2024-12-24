@@ -64,29 +64,68 @@
 
       <!-- Main Dashboard -->
       <main class="dashboard">
-        <h1 style="margin-top: 0px;">Dashboard</h1>
+        <h1 style="margin-top: 0px">Dashboard</h1>
         <div class="stats-cards">
           <div class="card">
             <h4>Current Credits</h4>
-            <p>3240.5$</p>
-            <img src="./images/dollar.png" />
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <img
+                style="
+                  width: 20px;
+                  height: 20px;
+                  margin-right: 10px;
+                  margin-top: 9px;
+                "
+                src="./images/dollar.png"
+              />
+              <p>3240.5$</p>
+            </div>
           </div>
           <div class="card">
             <h4>Total Batteries Buy</h4>
-            <p>5,000</p>
-            <img src="./images/bettery.png" />
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <img
+                style="
+                  width: 12px;
+                  height: 20px;
+                  margin-right: 10px;
+                  margin-top: 9px;
+                "
+                src="./images/bettery.png"
+              />
+              <p>5,000</p>
+            </div>
           </div>
           <div class="card">
             <h4>Carbon Emission Reduced</h4>
-            <p>16.325</p>
-            <img src="./images/co2.png" />
-            <span style="color: gray; font-size: 12px;">kgCO2e/t metal</span>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <p>16.325</p>
+            </div>
 
+            <span style="color: gray; font-size: 12px">kgCO2e/t metal</span>
           </div>
         </div>
         <div class="dashboard-content">
           <div class="graph-section">
-            <h3 style="margin-top: 0px;">Emission Savings Graph</h3>
+            <h3 style="margin-top: 0px">Emission Savings Graph</h3>
             <canvas
               id="carbonContributionGraph"
               width="400"
@@ -152,14 +191,14 @@
             </script>
           </div>
           <div class="rank-section">
-            <h3 style="margin-top: 0px;">Company Rank</h3>
-            <table style="margin-top: 0px;" class="rank-table">
+            <h3 style="margin-top: 0px">Company Rank</h3>
+            <table style="margin-top: 0px" class="rank-table">
               <thead>
                 <tr>
                   <th width="10%">Rank</th>
-                  <th style="width: 20%;"></th>
+                  <th style="width: 20%"></th>
                   <th>Company Name</th>
-                  <th style="width: 20%;">Emission Reduced</th>
+                  <th style="width: 20%">Emission Reduced</th>
                 </tr>
               </thead>
               <tbody>
@@ -170,7 +209,7 @@
                       src="./images/econowatt.png"
                       alt="Company Logo"
                       class="rank-logo"
-                      style="width: 50px; height: 50px;"
+                      style="width: 50px; height: 50px"
                     />
                   </td>
                   <td>Econowatt</td>
@@ -183,7 +222,7 @@
                       src="./images/sungyillhightech.png"
                       alt="Company Logo"
                       class="rank-logo"
-                      style="width: 50px; height: 50px;"
+                      style="width: 50px; height: 50px"
                     />
                   </td>
                   <td>SungEel HiTech</td>
@@ -196,7 +235,7 @@
                       src="./images/samsung.png"
                       alt="Company Logo"
                       class="rank-logo"
-                      style="width: 50px; height: 50px;"
+                      style="width: 50px; height: 50px"
                     />
                   </td>
                   <td>Samsung</td>
@@ -204,14 +243,10 @@
                 </tr>
               </tbody>
             </table>
-            
-            
-            
-            
           </div>
         </div>
         <div class="purchase-history">
-          <h3 style="margin-top: 0px;">Recent Purchase History</h3>
+          <h3 style="margin-top: 0px">Recent Purchase History</h3>
           <table>
             <thead>
               <tr>
@@ -265,13 +300,17 @@
     </div>
   </body>
   <script>
-    document.getElementById('buy-menu-item').addEventListener('click', function () {
-      window.location.href = 'company_buy.html'; // Target page
-    });
+    document
+      .getElementById("buy-menu-item")
+      .addEventListener("click", function () {
+        window.location.href = "company_buy.html"; // Target page
+      });
 
-    document.getElementById('dashboard-menu-item').addEventListener('click', function () {
-      window.location.href = 'company_dashboard.html'; // Target page
-    });
+    document
+      .getElementById("dashboard-menu-item")
+      .addEventListener("click", function () {
+        window.location.href = "company_dashboard.html"; // Target page
+      });
 
     // 현재 로그인된 사용자 정보 렌더링
     function renderUserName() {

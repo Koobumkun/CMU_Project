@@ -24,11 +24,7 @@
         </div>
         <!-- Menu Section -->
         <nav class="menu-section">
-          <img
-            src="./images/User.png"
-            alt="Company Logo"
-            class="admin-logo"
-          />
+          <img src="./images/User.png" alt="Company Logo" class="admin-logo" />
           <span id="user-name"></span>
           <div class="logout-section" id="logout-section">
             <img id="logout-btn" src="./images/logout.png" alt="logout" />
@@ -63,11 +59,11 @@
       </div>
       <!-- Main Content -->
       <main class="main-content">
-        <h1 style="margin-top: 0px;">Sell</h1>
+        <h1 style="margin-top: 0px">Sell</h1>
 
         <!-- Sell History -->
         <section id="sell-history">
-          <h3 style="margin-top: 0px;">History of Sales Applications</h3>
+          <h3 style="margin-top: 0px">History of Sales Applications</h3>
           <table>
             <thead>
               <tr>
@@ -83,7 +79,7 @@
 
         <!-- Selling Form -->
         <section id="selling-form">
-          <h3 style="margin-top: 0px;">Selling Form</h3>
+          <h3 style="margin-top: 0px">Selling Form</h3>
           <form>
             <div class="form-group">
               <label for="battery-type">Type of Battery</label>
@@ -110,19 +106,23 @@
     </div>
 
     <script>
-      document.getElementById('sell-menu-item').addEventListener('click', function () {
-        window.location.href = 'user_sell.html'; // Target page
-      });
-      
-      document.getElementById('dashboard-menu-item').addEventListener('click', function () {
-        window.location.href = 'user_dashboard.html'; // Target page
-      });
+      document
+        .getElementById("sell-menu-item")
+        .addEventListener("click", function () {
+          window.location.href = "user_sell.html"; // Target page
+        });
+
+      document
+        .getElementById("dashboard-menu-item")
+        .addEventListener("click", function () {
+          window.location.href = "user_dashboard.html"; // Target page
+        });
 
       document.getElementById("amount").addEventListener("input", function () {
         const amount = parseInt(this.value, 10) || 0; // 입력된 수량
         const type = document.getElementById("battery-type").value; // 배터리 타입 선택값
         let pricePerUnit = 0;
-    
+
         // 배터리 타입별 단가 설정
         if (type === "Lithium AAA") {
           pricePerUnit = 0.15;
@@ -131,44 +131,50 @@
         } else {
           pricePerUnit = 0.3;
         }
-    
+
         // 총 가격 계산 및 표시
         const totalPrice = amount * pricePerUnit;
         document.getElementById("price").textContent = `${totalPrice}$`;
       });
-    
+
       // 로컬스토리지에서 판매 기록 가져오기
       function getSellHistoryFromLocalStorage() {
         const history = localStorage.getItem("sell_history");
         return history ? JSON.parse(history) : [];
       }
-    
+
       // 로컬스토리지에 판매 기록 저장
       function saveSellHistoryToLocalStorage(history) {
         localStorage.setItem("sell_history", JSON.stringify(history));
       }
-    
+
       // 폼 요소 가져오기
       const form = document.querySelector("#selling-form form");
       const historyBody = document.getElementById("sell-list");
-    
+
       // 폼 제출 이벤트
       form.addEventListener("submit", function (e) {
         e.preventDefault(); // 폼 기본 동작 방지
-    
+
         // 입력 값 가져오기
         const type = document.getElementById("battery-type").value;
-        const amount = parseInt(document.getElementById("amount").value, 10) || 0;
-        const price = parseFloat(document.getElementById("price").textContent, 10) || 0;
-    
+        const amount =
+          parseInt(document.getElementById("amount").value, 10) || 0;
+        const price =
+          parseFloat(document.getElementById("price").textContent, 10) || 0;
+
         if (amount <= 0 || price <= 0) {
           alert("Please enter a valid amount.");
           return;
         }
-    
+
+        const isConfirmed = confirm("Do you want to apply to sell?");
+        if (!isConfirmed) {
+          return; // 사용자가 취소를 눌렀을 경우 중단
+        }
         // 현재 날짜 생성
         const date = new Date().toLocaleDateString();
-    
+
         // 새로운 항목 생성
         const newItem = {
           status: "⏳ Waiting",
@@ -176,64 +182,67 @@
           date,
           cost: `${price}$`,
         };
-    
+
         // 기존 기록 가져오기
         const sellHistory = getSellHistoryFromLocalStorage();
-    
+
         // 기록에 새 항목 추가
         sellHistory.push(newItem);
-    
+
         // 로컬스토리지에 저장
         saveSellHistoryToLocalStorage(sellHistory);
-    
+
         // 테이블 업데이트
         updateTable();
+
+        // 성공 알림 표시
+        alert("The transaction has been successfully applyed!");
       });
-    
+
       // 테이블 업데이트 함수
       function updateTable() {
         // 테이블 초기화
         historyBody.innerHTML = "";
-    
+
         // 로컬스토리지에서 기록 가져오기
         const sellHistory = getSellHistoryFromLocalStorage();
-    
+
         // 기록 렌더링
         sellHistory.forEach((item) => {
           const row = document.createElement("tr");
-    
+
           row.innerHTML = `
             <td>${item.status}</td>
             <td>${item.type}</td>
             <td>${item.date}</td>
             <td>${item.cost}</td>
           `;
-    
+
           historyBody.appendChild(row);
         });
       }
-    
+
       // 초기화 시 실행
       document.addEventListener("DOMContentLoaded", () => {
         renderUserName(); // 유저 이름 렌더링
         updateTable(); // 테이블 업데이트
-    
+
         // 로그아웃 이벤트 처리
         document
           .getElementById("logout-section")
           .addEventListener("click", () => {
             // 로컬스토리지에서 current_login 삭제
             localStorage.removeItem("current_login");
-    
+
             // 로그인 페이지로 리다이렉트
             window.location.href = "./login.html";
           });
       });
-    
+
       // 현재 로그인된 사용자 정보 렌더링
       function renderUserName() {
         const currentUser = JSON.parse(localStorage.getItem("current_login"));
-    
+
         if (currentUser && currentUser.name) {
           document.getElementById("user-name").textContent = currentUser.name;
         } else {
@@ -241,6 +250,5 @@
         }
       }
     </script>
-    
   </body>
 </html>

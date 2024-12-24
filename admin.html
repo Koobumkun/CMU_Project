@@ -47,7 +47,7 @@
 
         <!-- Our Batteries -->
         <section class="section">
-          <h2 style="margin-top: 0px;">Our Batteries</h2>
+          <h2 style="margin-top: 0px">Our Batteries</h2>
           <table>
             <thead>
               <tr>
@@ -63,7 +63,7 @@
 
         <!-- Selling Requests -->
         <section class="section">
-          <h2 style="margin-top: 0px;">Selling Requests</h2>
+          <h2 style="margin-top: 0px">Selling Requests</h2>
           <table>
             <thead>
               <tr>
@@ -82,7 +82,7 @@
 
         <!-- Purchasing Requests -->
         <section class="section">
-          <h2 style="margin-top: 0px;">Purchasing Requests</h2>
+          <h2 style="margin-top: 0px">Purchasing Requests</h2>
           <table>
             <thead>
               <tr>
@@ -102,10 +102,11 @@
     </div>
   </body>
   <script>
-    
-    document.getElementById('management-item').addEventListener('click', function () {
-      window.location.href = 'admin.html'; // Target page
-    });
+    document
+      .getElementById("management-item")
+      .addEventListener("click", function () {
+        window.location.href = "admin.html"; // Target page
+      });
 
     // 로컬스토리지에서 데이터 가져오기
     function getBatteriesFromLocalStorage() {
@@ -260,6 +261,12 @@
     });
 
     function handleAccept(request) {
+      // 확인 메시지 표시
+      const isConfirmed = confirm("Do you want to accept this request?");
+      if (!isConfirmed) {
+        return; // 사용자가 취소를 눌렀을 경우 중단
+      }
+
       // 로컬스토리지에서 기존 요청 데이터 가져오기
       const requests = getSellingRequestsFromLocalStorage();
 
@@ -276,9 +283,19 @@
 
       // 해당 테이블만 다시 렌더링
       renderSellingRequests(updatedRequests);
+
+      // 성공 알림 표시
+      alert("The transaction has been successfully completed!");
     }
 
     function handlePurchaseAccept(request) {
+      const isConfirmed = confirm(
+        "Do you want to accept this purchase request?"
+      );
+      if (!isConfirmed) {
+        return; // 사용자가 취소를 눌렀을 경우 중단
+      }
+
       // 로컬스토리지에서 기존 요청 데이터 가져오기
       const requests = getPurchasingRequestsFromLocalStorage();
 
@@ -298,6 +315,9 @@
 
       // 해당 테이블만 다시 렌더링
       renderPurchasingRequests(updatedRequests);
+
+      // 성공 알림 표시
+      alert("The transaction has been successfully completed!");
     }
 
     // 초기화 시 실행
