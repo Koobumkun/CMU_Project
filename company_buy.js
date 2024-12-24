@@ -19,14 +19,14 @@ function renderProducts(products) {
     productDiv.innerHTML = `
               <img src="${product.image}" alt="${product.name}">
               <h3>${product.name}</h3>
-              <p>₩${product.price}</p>
-              <p>재고: ${product.quantity}</p>
+              <p>$${product.price}</p>
+              <p>Stock: ${product.quantity}</p>
               <div class="quantity-group">
-            <label for="quantity-${product.id}">수량:</label>
+            <label for="quantity-${product.id}">Amount:</label>
             <input type="number" id="quantity-${product.id}" name="quantity" min="1" value="1">
             </div>
             <div class="button-group">
-              <button id="buy-${product.id}">구매</button>
+              <button id="buy-${product.id}">Buy</button>
             </div>
           `;
 

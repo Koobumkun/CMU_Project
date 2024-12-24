@@ -89,7 +89,7 @@
             {
               id: "company1",
               password: "1234",
-              name: "Company User",
+              name: "SungEel HiTech",
               role: "company",
             },
           ];
@@ -100,15 +100,15 @@
           const dummyBatteries = [
             {
               Type: "Lithium AAA",
-              Amount: 12,
-              Cost_per: 12,
-              Total_Cost: 144,
+              Amount: 27000,
+              Cost_per: 0.2,
+              Total_Cost: 5400,
             },
             {
               Type: "Lithium AA",
-              Amount: 20,
-              Cost_per: 10,
-              Total_Cost: 200,
+              Amount: 22000,
+              Cost_per: 0.3,
+              Total_Cost: 6600,
             },
           ];
           localStorage.setItem("batteries", JSON.stringify(dummyBatteries));
@@ -121,7 +121,7 @@
               date: "12/18/2024",
               address: "200, Mapo-daero, Mapo-gu, Seoul",
               amount: 12,
-              costs: 32,
+              costs: 2.4,
               accept: false,
             },
             {
@@ -129,7 +129,7 @@
               date: "12/19/2024",
               address: "150, Gangnam-daero, Gangnam-gu, Seoul",
               amount: 20,
-              costs: 50,
+              costs: 6,
               accept: true,
             },
           ];
@@ -146,19 +146,19 @@
               status: "⏳ Waiting",
               type: "Lithium AAA",
               date: "2024. 12. 1",
-              cost: "1200$",
+              cost: "23$",
             },
             {
               status: "✅ Complete",
               type: "Alkaline AA",
               date: "2024. 11. 25",
-              cost: "800$",
+              cost: "52.5$",
             },
             {
               status: "⏳ Waiting",
               type: "Nickel-Cadmium",
               date: "2024. 11. 20",
-              cost: "300$",
+              cost: "13.15$",
             },
           ];
           localStorage.setItem(
@@ -174,16 +174,16 @@
               type: "Lithium AAA",
               company: "Samsung",
               date: "12/18, 2024",
-              amount: 12,
-              costs: 32,
+              amount: 880,
+              costs: 176,
               accept: false,
             },
             {
               type: "Lithium AA",
               company: "LG Chem",
               date: "12/19, 2024",
-              amount: 20,
-              costs: 50,
+              amount: 320,
+              costs: 96,
               accept: true,
             },
           ];
@@ -199,24 +199,24 @@
           {
             id: 1,
             name: "AA Lithium Battery",
-            price: 800,
-            quantity: 10,
+            price: 0.3,
+            quantity: 3200,
             image:
               "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/AA.jpg",
           },
           {
             id: 2,
             name: "AAA Lithium Battery",
-            price: 700,
-            quantity: 30,
+            price: 0.25,
+            quantity: 3800,
             image:
               "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/AAA.jpg",
           },
           {
             id: 3,
             name: "C Lithium Battery",
-            price: 1200,
-            quantity: 120,
+            price: 0.5,
+            quantity: 890,
             image:
               "https://hackaton-kcamt.s3.ap-northeast-2.amazonaws.com/C.jpg",
           },

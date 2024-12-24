@@ -125,11 +125,11 @@
     
         // 배터리 타입별 단가 설정
         if (type === "Lithium AAA") {
-          pricePerUnit = 100;
+          pricePerUnit = 0.15;
         } else if (type === "Alkaline AA") {
-          pricePerUnit = 80;
+          pricePerUnit = 0.2;
         } else {
-          pricePerUnit = 60;
+          pricePerUnit = 0.3;
         }
     
         // 총 가격 계산 및 표시
@@ -159,7 +159,7 @@
         // 입력 값 가져오기
         const type = document.getElementById("battery-type").value;
         const amount = parseInt(document.getElementById("amount").value, 10) || 0;
-        const price = parseInt(document.getElementById("price").textContent, 10) || 0;
+        const price = parseFloat(document.getElementById("price").textContent, 10) || 0;
     
         if (amount <= 0 || price <= 0) {
           alert("Please enter a valid amount.");

@@ -191,7 +191,7 @@ table td {
 /* Button Styles */
 .action-button {
   padding: 5px 10px;
-  background-color: #007bff;
+  background-color: #79D7BE;
   color: white;
   border: none;
   border-radius: 5px;
@@ -199,7 +199,7 @@ table td {
 }
 
 .action-button:hover {
-  background-color: #0056b3;
+  background-color: #79D7BE;
 }
 
 .disabled-button {
